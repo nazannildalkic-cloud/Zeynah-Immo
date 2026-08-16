@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeynah für Immobilien — Ihre KI-Assistentin. 24/7. In 20+ Sprachen.</title>
+<meta name="description" content="Zeynah nimmt Käufer- und Mieteranfragen an, qualifiziert Interessenten und bucht Besichtigungen — bevor ein Interessent beim Wettbewerber unterschreibt.">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   ZEYNAH — DESIGN-SYSTEM
+   Anthrazit statt Schwarz. Creme statt Weiss. Ein Blau.
+   Schachbrett: dunkel / hell abwechselnd. Glasige Kacheln, schwebend.
+   Palette: --bg #1c1f24 · Creme #ece7dd / #f2ede3 · Blau #0071e3/#0057ad
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Anthrazit — KEIN reines Schwarz */
+  --bg: #1c1f24;
+  --bg-elevated: #24272d;
+  --glass: linear-gradient(160deg, rgba(58, 63, 72, 0.55), rgba(36, 40, 47, 0.55));
+  --glass-border: rgba(236, 231, 221, 0.12);
+  --glass-border-hover: rgba(236, 231, 221, 0.22);
+
+  /* Creme / Off-White — KEIN reines Weiss */
+  --text: #ece7dd;
+  --text-secondary: #a9a69d;
+  --text-muted: #78756d;
+  --creme-auf-blau: #faf7f2;
+
+  /* Helle Schachbrett-Seite */
+  --cream-bg: #f2ede3;
+  --ink: #23262c;
+  --ink-secondary: #5a574f;
+  --ink-muted: #8a867c;
+
+  /* EIN Blau */
+  --accent: #0071e3;
+  --accent-deep: #0057ad;
+  --accent-light: #4c9bf0;
+  --accent-glow: rgba(0, 113, 227, 0.15);
+
+  --green: #30d158;
+  --yellow: #ffd60a;
+  --red: #ff453a;
+  --orange: #ff9f0a;
+
+  --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
+  --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+  --space-3xl: 64px; --space-4xl: 100px;
+  --r-sm: 12px; --r-md: 16px; --r-lg: 20px; --r-xl: 24px;
+  --shadow-glass: 0 18px 50px rgba(10,12,15,0.55), inset 0 1px 0 rgba(236,231,221,0.09);
+  --shadow-hover: 0 34px 80px rgba(10,12,15,0.7), inset 0 1px 0 rgba(236,231,221,0.12);
+  --t: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.5; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+img, video { max-width: 100%; display: block; }
+
+/* GLASS — glasig, durchscheinend, schwebend (dunkle Seite) */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(50px) saturate(2);
+  -webkit-backdrop-filter: blur(50px) saturate(2);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-glass);
+  transition: all var(--t);
+}
+.glass:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* SCHACHBRETT — helle Seite */
+.section-light { background: var(--cream-bg); color: var(--ink); }
+.section-light .glass {
+  background: linear-gradient(160deg, rgba(255,255,255,0.78), rgba(255,255,255,0.52));
+  border: 1px solid rgba(35,38,44,0.08);
+  box-shadow: 0 18px 50px rgba(95,85,65,0.16), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+.section-light .glass:hover {
+  border-color: rgba(35,38,44,0.16);
+  box-shadow: 0 34px 80px rgba(95,85,65,0.24), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.section-light h2, .section-light h3,
+.section-light .section-head h2,
+.section-light .step-card h3, .section-light .voice-card h3,
+.section-light .price-card h3, .section-light .price-amount,
+.section-light .roi-content h3, .section-light .form-card h3,
+.section-light .faq-q, .section-light .dash-title, .section-light .dash-big,
+.section-light .contact-card h4 { color: var(--ink); }
+.section-light p, .section-light .section-head p,
+.section-light .step-card p, .section-light .voice-card p,
+.section-light .price-features li, .section-light .roi-content p,
+.section-light .form-card > p, .section-light .faq-a p,
+.section-light .dash-tile p, .section-light .contact-card p,
+.section-light .sos-content p { color: var(--ink-secondary); }
+.section-light .price-note, .section-light .sos-content h4,
+.section-light .order-label, .section-light .order-time,
+.section-light .dash-sub, .section-light .dash-tile h5,
+.section-light .form-note, .section-light .form-group label,
+.section-light .footer-contact { color: var(--ink-muted); }
+.section-light .voice-label { color: var(--accent-deep); }
+.section-light .order-bubble strong,
+.section-light .roi-highlight { color: var(--accent-deep); }
+.section-light .order-bubble { color: var(--ink); }
+.section-light .order-bubble.highlight { border-color: rgba(0,113,227,0.35); background: rgba(0,113,227,0.07); }
+.section-light .price-features li { border-bottom-color: rgba(35,38,44,0.08); }
+.section-light .price-card.popular { background: rgba(0,113,227,0.07); border-color: rgba(0,113,227,0.28); }
+.section-light .dash-tile {
+  background: linear-gradient(160deg, rgba(255,255,255,0.78), rgba(255,255,255,0.52));
+  backdrop-filter: blur(30px) saturate(1.8);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
+  border-color: rgba(35,38,44,0.08);
+  box-shadow: 0 18px 50px rgba(95,85,65,0.16), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+.section-light .dash-tile:hover { border-color: rgba(35,38,44,0.18); }
+.section-light .dash-updated { color: #1e7e34; }
+.section-light .dash-dot { box-shadow: 0 0 12px rgba(30,126,52,0.6); }
+.section-light .video-box {
+  background: linear-gradient(160deg, rgba(255,255,255,0.78), rgba(255,255,255,0.52));
+  border-color: rgba(35,38,44,0.08);
+  box-shadow: 0 18px 50px rgba(95,85,65,0.16), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+.section-light .btn-secondary { background: rgba(35,38,44,0.06); color: var(--ink); border-color: rgba(35,38,44,0.12); }
+.section-light .btn-secondary:hover { background: rgba(35,38,44,0.10); }
+.section-light .faq-q:hover { color: var(--accent-deep); }
+.section-light .footer-contact a { color: var(--accent-deep); }
+.section-light.footer-cta { border-top-color: rgba(35,38,44,0.10); }
+.section-light .form-group input, .section-light .form-group select, .section-light .form-group textarea {
+  background: rgba(255,255,255,0.85); border-color: rgba(35,38,44,0.12); color: var(--ink);
+}
+.section-light .form-group input:focus, .section-light .form-group select:focus, .section-light .form-group textarea:focus {
+  border-color: var(--accent); background: #ffffff;
+}
+.section-light .form-group input::placeholder, .section-light .form-group textarea::placeholder { color: var(--ink-muted); }
+.section-light .form-group select option { background: #ffffff; color: var(--ink); }
+.section-light .voice-card audio::-webkit-media-controls-panel { background: #ffffff; }
+.section-light .roi-icon { background: rgba(0,113,227,0.12); }
+
+/* RTL (Arabisch) */
+html[dir="rtl"] body { text-align: right; }
+html[dir="rtl"] .order-item { flex-direction: row-reverse; }
+html[dir="rtl"] .order-time { text-align: left; }
+html[dir="rtl"] .price-features li { flex-direction: row-reverse; }
+html[dir="rtl"] .sos-card { flex-direction: row-reverse; }
+html[dir="rtl"] .roi-box { flex-direction: row-reverse; }
+
+/* SCHWEBENDE KACHELN */
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.sos-card, .step-card, .voice-card, .price-card, .contact-card, .dash-tile,
+.faq-item, .form-card, .video-box {
+  animation: cardFloat 7s ease-in-out infinite;
+}
+.sos-card:nth-child(2), .step-card:nth-child(2), .voice-card:nth-child(2),
+.price-card:nth-child(2), .contact-card:nth-child(2), .dash-tile:nth-child(2),
+.faq-item:nth-child(2) { animation-delay: -1.2s; }
+.sos-card:nth-child(3), .step-card:nth-child(3), .contact-card:nth-child(3), .dash-tile:nth-child(3),
+.faq-item:nth-child(3) { animation-delay: -2.4s; }
+.sos-card:nth-child(4), .contact-card:nth-child(4), .dash-tile:nth-child(4),
+.faq-item:nth-child(4) { animation-delay: -3.6s; }
+.dash-tile:nth-child(5), .faq-item:nth-child(5) { animation-delay: -4.2s; }
+.dash-tile:nth-child(6), .faq-item:nth-child(6) { animation-delay: -5s; }
+.dash-tile:nth-child(7), .faq-item:nth-child(7) { animation-delay: -5.8s; }
+.dash-tile:nth-child(8) { animation-delay: -6.4s; }
+.sos-card:hover, .step-card:hover, .voice-card:hover,
+.price-card:hover, .contact-card:hover, .dash-tile:hover {
+  animation: none;
+  transform: translateY(-10px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sos-card, .step-card, .voice-card, .price-card, .contact-card, .dash-tile { animation: none; }
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(28, 31, 36, 0.78);
+  backdrop-filter: blur(40px) saturate(1.8);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-logo-img { height: 38px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 14px; font-weight: 400; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.lang-switch { display: flex; gap: 2px; background: rgba(236,231,221,0.06); border: 1px solid var(--glass-border); border-radius: 8px; padding: 3px; }
+.lang-btn { background: transparent; border: none; color: var(--text-muted); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+.lang-btn.active { background: rgba(236,231,221,0.12); color: var(--text); }
+.nav-cta { background: var(--accent); color: var(--creme-auf-blau); padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+.nav-cta:hover { background: var(--accent-light); transform: scale(1.03); }
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
+.btn-primary { background: var(--accent); color: var(--creme-auf-blau); }
+.btn-primary:hover { background: var(--accent-light); transform: scale(1.03); }
+.btn-secondary { background: rgba(236,231,221,0.08); color: var(--text); border: 1px solid var(--glass-border); }
+.btn-secondary:hover { background: rgba(236,231,221,0.12); }
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+
+/* HERO */
+.hero { padding: 160px 0 100px; position: relative; overflow: hidden; background: var(--bg); }
+.hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(0,113,227,0.10) 0%, transparent 60%); pointer-events: none; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,113,227,0.10); border: 1px solid rgba(0,113,227,0.22); color: var(--accent-light); padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(40px, 5vw, 64px); font-weight: 700; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; color: var(--text); }
+.hero h1 .accent { color: var(--accent-light); }
+.hero-lead { font-size: 19px; color: var(--text-secondary); max-width: 480px; margin-bottom: 32px; line-height: 1.6; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* GLASKUGEL — das Logo in der Kugel, schwebend */
+.orb-wrap { perspective: 900px; display: flex; align-items: center; justify-content: center; height: 100%; position: relative; }
+.orb {
+  width: 300px; height: 300px; border-radius: 50%;
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.06) 28%, transparent 45%),
+    radial-gradient(circle at 50% 55%, rgba(76,155,240,0.25) 0%, rgba(0,113,227,0.35) 55%, rgba(0,55,115,0.55) 100%);
+  border: 1px solid rgba(236,231,221,0.28);
+  box-shadow:
+    0 40px 100px rgba(0,113,227,0.35),
+    inset 0 -25px 60px rgba(0,70,140,0.45),
+    inset 0 18px 45px rgba(255,255,255,0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: orbFloat 6s ease-in-out infinite;
+}
+.orb-logo { width: 135px; height: auto; transform: translateY(-10px); filter: drop-shadow(0 8px 24px rgba(10,30,60,0.5)); }
+.orb-shine {
+  position: absolute; top: 9%; left: 16%; width: 38%; height: 24%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.65), transparent 70%);
+  transform: rotate(-18deg); pointer-events: none;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(14px) scale(0.98); }
+  50% { transform: translateY(-16px) scale(1.03); }
+}
+.logo-3d-ring {
+  position: absolute;
+  width: 340px; height: 340px;
+  border: 2px solid rgba(0,113,227,0.18);
+  border-radius: 50%;
+  animation: ringPulse 3s ease-out infinite;
+}
+.logo-3d-ring:nth-child(2) { animation-delay: 0.5s; width: 400px; height: 400px; }
+.logo-3d-ring:nth-child(3) { animation-delay: 1s; width: 460px; height: 460px; }
+@keyframes ringPulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* SECTIONS */
+.section { padding: 100px 0; }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.section-head h2 { font-size: clamp(32px, 3.5vw, 44px); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; line-height: 1.1; color: var(--text); }
+.section-head p { font-size: 18px; color: var(--text-secondary); line-height: 1.6; }
+
+/* SOS */
+.sos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 800px; margin: 0 auto; }
+.sos-card { padding: 32px; display: flex; align-items: flex-start; gap: 16px; }
+.sos-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.sos-card:nth-child(1) .sos-icon { background: rgba(255,69,58,0.15); }
+.sos-card:nth-child(2) .sos-icon { background: rgba(255,214,10,0.15); }
+.sos-card:nth-child(3) .sos-icon { background: rgba(255,69,58,0.15); }
+.sos-card:nth-child(4) .sos-icon { background: rgba(255,214,10,0.15); }
+.sos-content h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 6px; }
+.sos-content .sos-big { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.sos-card:nth-child(1) .sos-big, .sos-card:nth-child(3) .sos-big { color: var(--red); }
+.sos-card:nth-child(2) .sos-big, .sos-card:nth-child(4) .sos-big { color: var(--yellow); }
+.sos-content p { font-size: 14px; color: var(--text-secondary); }
+
+/* VIDEO */
+.video-box {
+  border-radius: 24px; overflow: hidden;
+  background: var(--glass);
+  backdrop-filter: blur(30px) saturate(1.8);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 60px rgba(12,14,17,0.55), inset 0 1px 0 rgba(236,231,221,0.09);
+}
+.video-box video { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--bg-elevated); }
+.video-info { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--bg-elevated); }
+.video-info h4 { font-size: 16px; font-weight: 600; color: var(--text); }
+.video-info p { font-size: 14px; color: var(--text-secondary); }
+.video-meta { font-size: 13px; color: var(--text-muted); }
+
+/* STEPS */
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.step-card { padding: 40px 32px; text-align: center; }
+.step-num { width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: var(--creme-auf-blau); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(0,113,227,0.3); }
+.step-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+.step-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+/* ORDER FLOW */
+.order-flow { max-width: 600px; margin: 0 auto; }
+.order-item { display: flex; gap: 20px; margin-bottom: 32px; }
+.order-time { font-size: 13px; color: var(--text-muted); font-weight: 600; min-width: 50px; text-align: right; padding-top: 4px; }
+.order-content { flex: 1; }
+.order-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 6px; }
+.order-bubble { padding: 20px 24px; font-size: 15px; line-height: 1.6; }
+.order-bubble.highlight { border-color: rgba(0,113,227,0.3); background: rgba(0,113,227,0.06); }
+.order-bubble strong { color: var(--accent-light); }
+
+/* VOICE DEMOS */
+.voice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 860px; margin: 0 auto; }
+.voice-card { padding: 32px; }
+.voice-card .voice-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--accent-light); margin-bottom: 8px; }
+.voice-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.voice-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 18px; line-height: 1.6; }
+.voice-card audio { width: 100%; height: 44px; border-radius: 999px; outline: none; }
+.voice-card audio::-webkit-media-controls-panel { background: var(--bg-elevated); }
+
+/* DASHBOARD — Vorschau des echten Cockpits */
+.dash { padding: 40px; border-radius: var(--r-xl); }
+.dash-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+.dash-title { font-size: 18px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.dash-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); flex-shrink: 0; }
+.dash-sub { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.dash-updated { font-size: 12px; color: var(--green); font-weight: 600; }
+.dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.dash-tile {
+  background: var(--glass);
+  backdrop-filter: blur(30px) saturate(1.8);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 22px;
+  box-shadow: var(--shadow-glass);
+  transition: all var(--t);
+}
+.dash-tile:hover { border-color: var(--glass-border-hover); box-shadow: var(--shadow-hover); }
+.dash-tile h5 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 10px; }
+.dash-big { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 8px; color: var(--text); }
+.dash-tile p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+.dash-tile.warn .dash-big { color: var(--yellow); }
+.dash-tile.ok .dash-big { color: var(--green); }
+.dash-cta { text-align: center; margin-top: 36px; }
+.dash-cta p { margin-top: 14px; font-size: 13px; color: var(--text-muted); }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.price-card { padding: 48px 32px; text-align: center; }
+.price-card.popular { border-color: rgba(0,113,227,0.3); transform: scale(1.02); background: rgba(0,113,227,0.05); }
+.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: var(--creme-auf-blau); font-size: 11px; font-weight: 600; padding: 6px 18px; border-radius: 999px; letter-spacing: 0.5px; }
+.price-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.price-amount { font-size: 48px; font-weight: 700; margin: 20px 0 4px; line-height: 1; color: var(--text); }
+.price-amount span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
+.price-note { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+.price-features { list-style: none; text-align: left; margin-bottom: 32px; }
+.price-features li { padding: 12px 0; font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border); display: flex; align-items: flex-start; gap: 10px; }
+.price-features li:last-child { border-bottom: none; }
+.price-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* ROI */
+.roi-box { padding: 40px 48px; margin-bottom: 64px; display: flex; align-items: center; gap: 32px; }
+.roi-icon { width: 64px; height: 64px; min-width: 64px; background: rgba(0,113,227,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+.roi-content h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.roi-content p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
+.roi-highlight { color: var(--accent-light); font-weight: 600; }
+
+/* FORM */
+.form-section { padding: 100px 0; }
+.form-card { padding: 48px; max-width: 520px; margin: 0 auto; }
+.form-card h3 { font-size: 28px; font-weight: 700; margin-bottom: 4px; text-align: center; color: var(--text); }
+.form-card > p { text-align: center; color: var(--text-secondary); margin-bottom: 32px; font-size: 15px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; background: rgba(236,231,221,0.04); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text); font-size: 15px; transition: all 0.2s; font-family: inherit; }
+.form-group select option { background: var(--bg-elevated); color: var(--text); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); background: rgba(236,231,221,0.06); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.form-submit { width: 100%; margin-top: 8px; }
+.form-note { text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-muted); }
+
+/* FAQ */
+.faq-item { margin-bottom: 16px; }
+.faq-item-inner { padding: 0 32px; }
+.faq-q { padding: 24px 0; font-size: 17px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; user-select: none; color: var(--text); }
+.faq-q:hover { color: var(--accent-light); }
+.faq-q::after { content: '+'; font-size: 24px; color: var(--accent); font-weight: 300; flex-shrink: 0; margin-left: 16px; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+.faq-item.open .faq-a { max-height: 400px; padding-bottom: 24px; }
+.faq-a p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+
+/* KONTAKT */
+.contact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px; }
+.contact-card { padding: 28px 20px; text-align: center; text-decoration: none; display: block; }
+.contact-card .contact-icon { font-size: 28px; margin-bottom: 12px; }
+.contact-card h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.contact-card p { font-size: 13px; color: var(--text-secondary); word-break: break-word; }
+
+/* FOOTER CTA */
+.footer-cta { padding: 100px 0; text-align: center; border-top: 1px solid var(--glass-border); }
+.footer-cta h2 { font-size: clamp(36px, 4vw, 52px); font-weight: 700; margin-bottom: 16px; color: var(--text); }
+.footer-cta p { font-size: 19px; color: var(--text-secondary); margin-bottom: 32px; }
+.footer-contact { margin-top: 32px; font-size: 15px; color: var(--text-muted); }
+.footer-contact a { color: var(--accent-light); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+
+/* IMPRESSUM */
+.impressum-section { padding: 64px 0; border-top: 1px solid var(--glass-border); }
+.impressum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.impressum-col h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.8px; }
+.impressum-col p, .impressum-col a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; text-decoration: none; }
+.impressum-col a:hover { color: var(--accent-light); }
+
+/* SITE FOOTER */
+.site-footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--glass-border); }
+.site-footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.site-footer a { color: var(--text-secondary); text-decoration: none; }
+.site-footer a:hover { color: var(--accent-light); }
+
+/* COOKIE */
+.cookie-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 480px; width: 90%; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; z-index: 9999; }
+.cookie-banner p { font-size: 13px; color: var(--text-secondary); }
+.cookie-btn { padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; background: var(--accent); color: var(--creme-auf-blau); }
+
+/* WHATSAPP FLOAT */
+.wa-float {
+  position: fixed; bottom: 28px; left: 28px; z-index: 9000;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: var(--creme-auf-blau);
+  border-radius: 50px; padding: 14px 22px; font-size: 15px; font-weight: 700;
+  text-decoration: none; letter-spacing: .3px;
+  box-shadow: 0 6px 28px rgba(0,87,173,.34);
+  display: flex; align-items: center; gap: 9px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.wa-float:hover { transform: translateY(-2px); box-shadow: 0 10px 34px rgba(0,87,173,.42); }
+.wa-float:active { transform: translateY(-4px) scale(.98); }
+.wa-pulse { width: 9px; height: 9px; background: var(--creme-auf-blau); border-radius: 50%; animation: znpulse 2s infinite; flex-shrink: 0; }
+@keyframes znpulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .wa-pulse { animation: none; } .wa-float { transition: none; } }
+
+/* ELEVENLABS GATE (Zwei-Klick, DSGVO) */
+.voice-gate {
+  position: fixed; right: 18px; bottom: 18px; z-index: 9500;
+  max-width: 280px; padding: 16px 18px; border-radius: 14px;
+  border: 2px solid rgba(0, 113, 227, .5);
+}
+.voice-gate-btn {
+  width: 100%; background: var(--accent); color: var(--creme-auf-blau);
+  border: none; border-radius: 10px; padding: 12px 16px;
+  font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
+  transition: background .15s;
+}
+.voice-gate-btn:hover { background: var(--accent-light); }
+.voice-gate p { font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+.voice-gate p a { color: var(--accent-light); text-decoration: none; }
+.voice-gate p a:hover { text-decoration: underline; }
+elevenlabs-convai { z-index: 60; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero { padding-top: 120px; }
+  .orb { width: 240px; height: 240px; }
+  .orb-logo { width: 110px; }
+  .sos-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: 1fr; }
+  .dash-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card.popular { transform: none; }
+  .roi-box { flex-direction: column; text-align: center; }
+  .contact-grid { grid-template-columns: repeat(2, 1fr); }
+  .impressum-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size: 36px; }
+  .section { padding: 64px 0; }
+  .dash { padding: 24px; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .order-item { flex-direction: column; gap: 8px; }
+  .order-time { text-align: left; }
+  .container { padding: 0 20px; }
+  .wa-float { bottom: 18px; left: 18px; padding: 12px 18px; font-size: 14px; }
+  .voice-gate { right: 12px; bottom: 12px; max-width: 240px; }
+}
+
+/* FILME-GALERIE */
+.film-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.film-card { overflow: hidden; position: relative; animation: cardFloat 7s ease-in-out infinite; }
+.film-card:nth-child(2) { animation-delay: -1.2s; }
+.film-card:nth-child(3) { animation-delay: -2.4s; }
+.film-card:nth-child(4) { animation-delay: -3.6s; }
+.film-card:hover { animation: none; transform: translateY(-10px); }
+.film-card video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--bg-elevated); }
+.film-card .film-t { padding: 14px 18px; font-size: 13px; font-weight: 600; color: var(--text); background: var(--bg-elevated); }
+.section-light .film-card .film-t { color: var(--ink); background: rgba(255,255,255,0.72); }
+@media (prefers-reduced-motion: reduce) { .film-card { animation: none; } }
+@media (max-width: 900px) { .film-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .film-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner glass" id="cookieBanner">
+  <p data-i18n="cookie.text">🍪 Wir verwenden nur technisch notwendige Cookies.</p>
+  <button class="cookie-btn" onclick="hideCookie()" data-i18n="cookie.btn">Verstanden</button>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/491637794150?text=Hallo%20Zeynah%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eure%20Sprach-KI." target="_blank" rel="noopener" aria-label="Per WhatsApp kontaktieren">
+  <span class="wa-pulse" aria-hidden="true"></span>💬 WhatsApp
+</a>
+
+<!-- ELEVENLABS GATE — erst nach Zustimmung wird geladen (DSGVO) -->
+<div id="voiceGate" class="voice-gate glass">
+  <button class="voice-gate-btn" onclick="startVoice()" data-i18n="gate.btn">🎙️ Sprachberatung starten</button>
+  <p><span data-i18n="gate.note">Dabei wird ein Dienst von ElevenLabs (USA) geladen.</span> <a href="#impressum" data-i18n="gate.privacy">Datenschutz</a></p>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo"><img src="assets/zeynah-z-logo.png" alt="Zeynah Logo" class="nav-logo-img">Zeynah</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#problem" data-i18n="nav.problem">Das Problem</a>
+      <a href="#stimme" data-i18n="nav.stimme">Stimme</a>
+      <a href="#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="#live" data-i18n="nav.live">Live-Dashboard</a>
+      <a href="#preise" data-i18n="nav.preise">Preise</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+        <button class="lang-btn" data-lang="el">EL</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+      <a href="#pilot-form" class="nav-cta" data-i18n="nav.cta">Pilot anfragen</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO (dunkel) -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge" data-i18n="hero.badge">🚀 Pilotprogramm für Immobilien — 3 Plätze verfügbar</div>
+        <h1 data-i18n="hero.h1">Interessenten rufen an. <span class="accent">Immer</span> geht jemand ran. Auch sonntags um 21 Uhr.</h1>
+        <p class="hero-lead" data-i18n="hero.lead">Zeynah nimmt Käufer- und Mieteranfragen an, qualifiziert Budget und Finanzierung, verschickt Exposés und bucht Besichtigungen — rund um die Uhr. In 20+ Sprachen.</p>
+        <div class="hero-ctas">
+          <a href="#pilot-form" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Pilot anfragen →</a>
+          <a href="#live" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Live-Dashboard öffnen</a>
+        </div>
+      </div>
+      <div class="orb-wrap">
+        <div class="logo-3d-ring"></div>
+        <div class="logo-3d-ring"></div>
+        <div class="logo-3d-ring"></div>
+        <div class="orb">
+          <img src="assets/zeynah-z-logo.png" alt="Zeynah" class="orb-logo">
+          <div class="orb-shine"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO VIDEO (hell) -->
+<section class="section section-light" style="padding-top:80px;">
+  <div class="container">
+    <div class="video-box">
+      <video autoplay muted loop playsinline>
+        <source src="hero.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- SOS ALERTS (dunkel) -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="sos.h2">Was Zeynah an einem einzigen Wochenende findet</h2>
+      <p data-i18n="sos.p">Diese vier Warnungen kommen aus echten Maklerbüros. Nicht erfunden.</p>
+    </div>
+    <div class="sos-grid">
+      <div class="sos-card glass">
+        <div class="sos-icon">🚨</div>
+        <div class="sos-content">
+          <h4 data-i18n="sos1.h4">SOS · Verpasster Käufer</h4>
+          <div class="sos-big" data-i18n="sos1.big">12.400 €</div>
+          <p data-i18n="sos1.p">Kaufanfrage von Samstag, 21:15 Uhr. Nie beantwortet. Am Montag hat er beim Wettbewerber unterschrieben.</p>
+        </div>
+      </div>
+      <div class="sos-card glass">
+        <div class="sos-icon">⚠️</div>
+        <div class="sos-content">
+          <h4 data-i18n="sos2.h4">SOS · Kalte Portalanfragen</h4>
+          <div class="sos-big" data-i18n="sos2.big">9 von 10</div>
+          <p data-i18n="sos2.p">Interessenten springen ab, wenn nach einer Stunde keine Antwort kommt.</p>
+        </div>
+      </div>
+      <div class="sos-card glass">
+        <div class="sos-icon">📅</div>
+        <div class="sos-content">
+          <h4 data-i18n="sos3.h4">SOS · Besichtigungs-Ping-Pong</h4>
+          <div class="sos-big" data-i18n="sos3.big">27 Rückfragen</div>
+          <p data-i18n="sos3.p">für eine einzige Besichtigung: Termin, Unterlagen, Finanzierungsnachweis.</p>
+        </div>
+      </div>
+      <div class="sos-card glass">
+        <div class="sos-icon">🏠</div>
+        <div class="sos-content">
+          <h4 data-i18n="sos4.h4">SOS · Leerstand</h4>
+          <div class="sos-big" data-i18n="sos4.big">43 Tage</div>
+          <p data-i18n="sos4.p">steht die Wohnung leer, weil Mietanfragen liegen geblieben sind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS (hell) -->
+<section class="section section-light" id="ablauf">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="steps.h2">Drei Schritte. Keine Entscheidung ohne Mensch.</h2>
+      <p data-i18n="steps.p">Zeynah nimmt an, qualifiziert, bucht — aber sie entscheidet nie allein.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card glass">
+        <div class="step-num">1</div>
+        <h3 data-i18n="step1.h3">Entgegennehmen</h3>
+        <p data-i18n="step1.p">Anruf, WhatsApp, Portal-Anfrage, E-Mail. Zeynah nimmt alles entgegen — und macht einen sauberen Vorgang daraus.</p>
+      </div>
+      <div class="step-card glass">
+        <div class="step-num">2</div>
+        <h3 data-i18n="step2.h3">Qualifizieren</h3>
+        <p data-i18n="step2.p">Budget, Finanzierung, Eigenkapital, Zeitrahmen: Zeynah fragt nach — wie Ihr bester Mitarbeiter.</p>
+      </div>
+      <div class="step-card glass">
+        <div class="step-num">3</div>
+        <h3 data-i18n="step3.h3">Buchen</h3>
+        <p data-i18n="step3.p">Der Besichtigungstermin landet im Kalender — erst wenn ein Mensch bestätigt, ist er fest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FLOW (dunkel) -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="order.h2">So läuft eine Käuferanfrage</h2>
+      <p data-i18n="order.p">Der Interessent schreibt, wie er immer schreibt — kurz, vom Sofa, kein Formular.</p>
+    </div>
+    <div class="order-flow">
+      <div class="order-item">
+        <div class="order-time">21:14</div>
+        <div class="order-content">
+          <div class="order-label" data-i18n="o1.label">Interessent schreibt</div>
+          <div class="order-bubble glass" data-i18n="o1.bubble">Hallo, ist die 3-Zimmer-Wohnung in der Hafenstraße noch zu haben? Was kostet sie?</div>
+        </div>
+      </div>
+      <div class="order-item">
+        <div class="order-time">21:14</div>
+        <div class="order-content">
+          <div class="order-label" data-i18n="o2.label">Zeynah erkennt</div>
+          <div class="order-bubble glass highlight" data-i18n="o2.bubble">Objekt Hafenstraße 12 — verfügbar, 349.000 €.<br><strong>Exposé versendet. Eigenkapital und Zeitrahmen erfragt.<br>Besichtigung Samstag 10:30 frei.</strong> Termin buchen?</div>
+        </div>
+      </div>
+      <div class="order-item">
+        <div class="order-time">21:15</div>
+        <div class="order-content">
+          <div class="order-label" data-i18n="o3.label">Freigabe</div>
+          <div class="order-bubble glass" style="border-color:rgba(48,209,88,0.3);background:rgba(48,209,88,0.06);" data-i18n="o3.bubble">Ja</div>
+        </div>
+      </div>
+      <div class="order-item">
+        <div class="order-time">21:15</div>
+        <div class="order-content">
+          <div class="order-label" data-i18n="o4.label">Der Kollisions-Fang</div>
+          <div class="order-bubble glass" style="border-color:rgba(255,69,58,0.3);background:rgba(255,69,58,0.06);" data-i18n="o4.bubble"><strong>Achtung: Samstag 10:30 ist bereits eine Besichtigung für dasselbe Objekt.</strong><br>Gruppentermin oder 11:30 vorschlagen?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE DEMOS (hell) -->
+<section class="section section-light" id="stimme">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="voice.h2">Hören Sie selbst — die Stimme von Zeynah</h2>
+      <p data-i18n="voice.p">Klingt wie ein Mensch. Arbeitet wie ein Team. Echte Gespräche, keine Studioaufnahmen.</p>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card glass">
+        <div class="voice-label" data-i18n="v1.label">🏢 Verkauf</div>
+        <h3 data-i18n="v1.h3">Kaufanfrage am Telefon</h3>
+        <p data-i18n="v1.p">Der Interessent fragt nach Preis und Zustand — Zeynah qualifiziert Budget und Finanzierung und bucht die Besichtigung.</p>
+        <audio controls preload="none" id="voice1" src="assets/audio/hoerbeispiel-immo-de.mp3"></audio>
+      </div>
+      <div class="voice-card glass">
+        <div class="voice-label" data-i18n="v2.label">🔑 Vermietung</div>
+        <h3 data-i18n="v2.h3">Mietanfrage am Wochenende</h3>
+        <p data-i18n="v2.p">Zeynah erfragt Haushaltsgröße, Einkommen und Einzugstermin — und schickt die Unterlagen-Checkliste.</p>
+        <audio controls preload="none" id="voice2" src="assets/audio/voice-demo-makler-de.mp3"></audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE-DASHBOARD (dunkel) — Vorschau des echten Cockpits -->
+<section class="section" id="live">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="dash.h2">Das Live-System — Ihr Makler-Cockpit</h2>
+      <p data-i18n="dash.p">Anfrage bis Besichtigung, Exposé bis Provision. Alles auf einem Schirm.</p>
+    </div>
+    <div class="dash glass">
+      <div class="dash-head">
+        <div class="dash-title"><span class="dash-dot"></span>ZEYNAH Cockpit <span class="dash-sub" data-i18n="dash.sub">Demo-Ansicht</span></div>
+        <div class="dash-updated" data-i18n="dash.upd">● Aktualisiert alle 30 Sekunden</div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-tile">
+          <h5 data-i18n="d1.h5">Neue Anfragen heute</h5>
+          <div class="dash-big" data-i18n="d1.big">23</div>
+          <p data-i18n="d1.p">davon 9 Kauf · 14 Miete</p>
+        </div>
+        <div class="dash-tile">
+          <h5 data-i18n="d2.h5">Besichtigungen</h5>
+          <div class="dash-big" data-i18n="d2.big">16</div>
+          <p data-i18n="d2.p">diese Woche · alle bestätigt</p>
+        </div>
+        <div class="dash-tile warn">
+          <h5 data-i18n="d3.h5">Heiße Käufer</h5>
+          <div class="dash-big" data-i18n="d3.big">7</div>
+          <p data-i18n="d3.p">Finanzierung bestätigt · sofort anrufen</p>
+        </div>
+        <div class="dash-tile">
+          <h5 data-i18n="d4.h5">Wen anrufen</h5>
+          <div class="dash-big" data-i18n="d4.big">4</div>
+          <p data-i18n="d4.p">Rückrufe fällig · mit Gesprächseinstieg</p>
+        </div>
+        <div class="dash-tile ok">
+          <h5 data-i18n="d5.h5">Exposés offen</h5>
+          <div class="dash-big" data-i18n="d5.big">12</div>
+          <p data-i18n="d5.p">versendet, keine Rückmeldung · Nachfassen empfohlen</p>
+        </div>
+        <div class="dash-tile">
+          <h5 data-i18n="d6.h5">Provision in Aussicht</h5>
+          <div class="dash-big" data-i18n="d6.big">84.500 €</div>
+          <p data-i18n="d6.p">aus 5 qualifizierten Käufen</p>
+        </div>
+        <div class="dash-tile warn">
+          <h5 data-i18n="d7.h5">Leerstand</h5>
+          <div class="dash-big" data-i18n="d7.big">2 Objekte</div>
+          <p data-i18n="d7.p">Ø 18 Tage · Mietanfragen laufen</p>
+        </div>
+        <div class="dash-tile">
+          <h5 data-i18n="d8.h5">Portal-Antwortquote</h5>
+          <div class="dash-big" data-i18n="d8.big">98 %</div>
+          <p data-i18n="d8.p">ImmoScout24 & Immowelt · letzte 7 Tage</p>
+        </div>
+      </div>
+      <div class="dash-cta">
+        <a href="https://core.zeynah.cloud/cockpit#k=zeynah_demo_87868bb406070db4791bd8df6d40" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="dash.cta">Echtes Live-Dashboard öffnen →</a>
+        <p data-i18n="dash.note">Das Original läuft auf core.zeynah.cloud — öffnet in einem neuen Tab. Nur lesender Demo-Zugang.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-muted);" data-i18n="dash.bereiche">12 Bereiche: Cockpit, Telefon, WhatsApp, Anfragen, Objekte, Besichtigungen, Interessenten, Exposés, Käuferakte, Mieterakte, Vermieter, Provisionen</p>
+  </div>
+</section>
+
+<!-- MAKLER-FILM (hell) — sprachabhängig DE/EN/TR/AR/EL/RU -->
+<section class="section section-light">
+  <div class="container">
+    <div class="video-box">
+      <video controls id="bereicheVideo">
+        <source src="https://zeynah.cloud/videos/kurz-makler-de.mp4" type="video/mp4">
+      </video>
+      <div class="video-info">
+        <div>
+          <h4 data-i18n="vid.h4">📹 Zeynah für Immobilien — der Film</h4>
+          <p data-i18n="vid.p">Zwei Makler. Dieselbe Wohnung. Reserviert ist reserviert — auf die Minute.</p>
+        </div>
+        <div class="video-meta" data-i18n="vid.meta">HD · in Ihrer Sprache</div>
+      </div>
+    </div>
+    <div style="margin-top:64px;">
+      <div class="section-head" style="margin-bottom:40px;">
+        <h2 data-i18n="films.h2">Mehr Filme — kurz &amp; echt</h2>
+        <p data-i18n="films.p">Vier Clips aus dem Makler-Alltag. Kurz ansehen, sofort verstehen.</p>
+      </div>
+      <div class="film-grid">
+        <div class="film-card glass"><video autoplay muted loop playsinline preload="metadata" src="https://zeynah.cloud/videos/kurz-fristen-de.mp4"></video><div class="film-t" data-i18n="film1.t">⏰ Fristen — was passiert, wenn niemand rangeht</div></div>
+        <div class="film-card glass"><video autoplay muted loop playsinline preload="metadata" src="https://zeynah.cloud/videos/vertrauen-de.mp4"></video><div class="film-t" data-i18n="film2.t">🤝 Vertrauen — der erste Eindruck zählt</div></div>
+        <div class="film-card glass"><video autoplay muted loop playsinline preload="metadata" src="https://zeynah.cloud/videos/vormittag-de.mp4"></video><div class="film-t" data-i18n="film3.t">☀️ Ein Vormittag mit Zeynah</div></div>
+        <div class="film-card glass"><video autoplay muted loop playsinline preload="metadata" src="https://zeynah.cloud/videos/wanted-de.mp4"></video><div class="film-t" data-i18n="film4.t">🔍 Wanted — der verpasste Interessent</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING (dunkel) -->
+<section class="section" id="preise">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="price.h2">Preise, die sich rechnen</h2>
+      <p data-i18n="price.p">Monatlich kündbar zum Monatsende. Keine Mindestlaufzeit.</p>
+    </div>
+    <div class="roi-box glass">
+      <div class="roi-icon">💡</div>
+      <div class="roi-content">
+        <h3 data-i18n="roi.h3">Eine einzige verpasste Provision = mehr als neun Monate Zeynah Pro</h3>
+        <p data-i18n="roi.p">12.400 € Courtage, an einem Samstagabend verloren. <span class="roi-highlight">Zeynah nimmt jede Anfrage an — auch um 21 Uhr, auch auf Türkisch.</span></p>
+      </div>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card glass">
+        <h3>Start</h3>
+        <div class="price-amount">490 <span data-i18n="permonth">€/Monat</span></div>
+        <div class="price-note" data-i18n="p1.note">Ein Maklerbüro, bis ca. 300 Anfragen/Monat</div>
+        <ul class="price-features">
+          <li data-i18n="p1.f1">Anruf- & Anfragennahme per Telefon, WhatsApp & E-Mail</li>
+          <li data-i18n="p1.f2">Portal-Anfragen (ImmoScout24, Immowelt) strukturiert erfassen</li>
+          <li data-i18n="p1.f3">Besichtigungs-Bestätigungen & Erinnerungen</li>
+          <li data-i18n="p1.f4">Unbegrenzte Mitarbeiter</li>
+        </ul>
+        <a href="#pilot-form" class="btn btn-secondary" style="width:100%;" data-i18n="nav.cta">Pilot anfragen</a>
+      </div>
+      <div class="price-card glass popular" style="position:relative;">
+        <div class="popular-badge" data-i18n="popular">AM BELIEBTESTEN</div>
+        <h3>Pro</h3>
+        <div class="price-amount">1.290 <span data-i18n="permonth">€/Monat</span></div>
+        <div class="price-note" data-i18n="p2.note">Der Standard für ein laufendes Maklerbüro</div>
+        <ul class="price-features">
+          <li data-i18n="p2.f1">Alles aus Start</li>
+          <li data-i18n="p2.f2">Interessenten-Qualifizierung: Budget, Finanzierung, Zeitrahmen</li>
+          <li data-i18n="p2.f3">Besichtigungsplanung mit Kollisions-Warnung</li>
+          <li data-i18n="p2.f4">Exposé-Versand & Unterlagen-Checkliste</li>
+          <li data-i18n="p2.f5">Käufer- & Mieterakten mit Nachfass-Empfehlung</li>
+          <li data-i18n="p2.f6">Sechs Sprachen in der Oberfläche</li>
+        </ul>
+        <a href="#pilot-form" class="btn btn-primary" style="width:100%;" data-i18n="nav.cta">Pilot anfragen</a>
+      </div>
+      <div class="price-card glass">
+        <h3>Premium</h3>
+        <div class="price-amount">1.990 <span data-i18n="permonth">€/Monat</span></div>
+        <div class="price-note" data-i18n="p3.note">Mehrere Standorte oder Projektverkauf</div>
+        <ul class="price-features">
+          <li data-i18n="p3.f1">Alles aus Pro</li>
+          <li data-i18n="p3.f2">Projektverkauf: Käuferanfragen & Besichtigungstage</li>
+          <li data-i18n="p3.f3">Anbindung an Maklersoftware & bestehende Systeme</li>
+          <li data-i18n="p3.f4">Fester persönlicher Ansprechpartner</li>
+        </ul>
+        <a href="#pilot-form" class="btn btn-secondary" style="width:100%;" data-i18n="nav.cta">Pilot anfragen</a>
+      </div>
+    </div>
+    <div class="setup-info glass" style="margin-top:40px;padding:32px;text-align:center;">
+      <p data-i18n="setup"><strong>Setup wird einmalig berechnet: 1.900 – 4.900 €</strong> — je nach Prozessen, Systemen und Standorten. Wir übernehmen die Migration aus Excel, altem System oder Listen. <strong style="color:var(--accent-light);">Bei 12 Monaten Laufzeit verrechnen wir die Hälfte mit den Monatsraten.</strong> Alle Preise netto. Von Go-Live bis zur ersten beantworteten Anfrage: ca. 10 Arbeitstage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORM (hell) -->
+<section class="form-section section-light" id="pilot-form">
+  <div class="container">
+    <div class="form-card glass">
+      <h3 data-i18n="form.h3">🚀 Pilotplatz anfragen</h3>
+      <p data-i18n="form.p">Nur 3 Plätze verfügbar. Wir melden uns innerhalb von 24 Stunden.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label data-i18n="f.firma">Firmenname *</label>
+          <input type="text" data-i18n-ph="ph.firma" placeholder="z. B. Musterfirma GmbH" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.name">Ihr Name *</label>
+          <input type="text" data-i18n-ph="ph.name" placeholder="Vor- und Nachname" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.tel">Telefon *</label>
+          <input type="tel" placeholder="+49 170 12345678" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.mail">E-Mail *</label>
+          <input type="email" placeholder="info@ihrefirma.de" required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.branche">Branche *</label>
+          <select required>
+            <option value="" data-i18n="sel.waehlen">Bitte wählen</option>
+            <option data-i18n="opt.makler">Maklerbüro</option>
+            <option data-i18n="opt.verwaltung">Hausverwaltung</option>
+            <option data-i18n="opt.projekt">Projektentwicklung & Bauträger</option>
+            <option data-i18n="opt.sonst">Sonstiges</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.woche">Ca. Anfragen pro Woche</label>
+          <select>
+            <option value="" data-i18n="sel.waehlen">Bitte wählen</option>
+            <option>&lt; 50</option>
+            <option>50 – 150</option>
+            <option>150 – 300</option>
+            <option>300 – 500</option>
+            <option>&gt; 500</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f.problem">Was ist Ihr größtes Problem bei der Interessentenannahme?</label>
+          <textarea data-i18n-ph="ph.problem" placeholder="z. B. Wochenend-Anfragen von ImmoScout24, die bis Montag kalt sind..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg form-submit" data-i18n="form.btn">Anfrage senden →</button>
+        <p class="form-note" data-i18n="form.note">🔒 Ihre Daten werden DSGVO-konform verarbeitet. Kein Spam, keine Weitergabe.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ (dunkel) -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="faq.h2">Was Entscheider wirklich fragen</h2>
+      <p data-i18n="faq.p">Alles, was Makler vor dem Start wissen wollen.</p>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q1">Kann Zeynah mit meiner Maklersoftware verbinden?</div>
+        <div class="faq-a"><p data-i18n="a1">Ja. Zeynah spricht mit den gängigen Systemen — von Excel über onOffice bis Flowfact und individuellen Lösungen. Im Premium-Tarif bauen wir auch maßgeschneiderte Schnittstellen.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q2">Was passiert, wenn das Internet ausfällt?</div>
+        <div class="faq-a"><p data-i18n="a2">Zeynah läuft in der Cloud mit redundanter Infrastruktur. Anfragen werden automatisch nachgeholt. Für den Notfall können Sie jederzeit auf Ihre lokale Software zurückgreifen.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q3">Wer trainiert meine Leute?</div>
+        <div class="faq-a"><p data-i18n="a3">Wir übernehmen das komplett. Ein 2-stündiges Training vor Ort oder per Video. Die ersten 4 Wochen sind wir täglich erreichbar.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q4">Wie läuft der Pilot ab?</div>
+        <div class="faq-a"><p data-i18n="a4">Wir richten Zeynah mit Ihren echten Objekten, Interessenten und Prozessen ein. Sie testen mit echten Anfragen aus Ihrem Alltag. Am Ende entscheiden Sie in Ruhe — ohne Drama.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q5">Funktioniert das auch mit internationalen Interessenten?</div>
+        <div class="faq-a"><p data-i18n="a5">Ja. Zeynah versteht und antwortet in über 20 Sprachen — Ihre Interessenten schreiben und sprechen, wie sie es gewohnt sind. Die Oberfläche gibt es auf Deutsch, Türkisch, Englisch, Arabisch, Griechisch und Russisch.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q6">Was ist mit Datenschutz?</div>
+        <div class="faq-a"><p data-i18n="a6">DSGVO-konform, Server in der EU, alle Daten verschlüsselt. Wir haben das von Anfang an eingebaut — nicht nachträglich.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q7">Was passiert, wenn Zeynah eine Frage nicht beantworten kann?</div>
+        <div class="faq-a"><p data-i18n="a7">Zeynah erkennt das, vereinbart einen Rückruf oder leitet das Gespräch an Ihren menschlichen Mitarbeiter weiter — automatisch und ohne Pause für den Anrufer.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q8">Erkennt Zeynah, ob ein Interessent es ernst meint?</div>
+        <div class="faq-a"><p data-i18n="a8">Ja. Zeynah erfragt Budget, Finanzierungsbestätigung und Zeitrahmen, markiert heiße Käufer und dokumentiert alles sauber — auch im Sinne des Bestellerprinzips.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT / FOOTER CTA (hell) -->
+<section class="footer-cta section-light" id="kontakt">
+  <div class="container">
+    <h2 data-i18n="kontakt.h2">Bereit, nie wieder einen Interessenten zu verpassen?</h2>
+    <p data-i18n="kontakt.p">Sprechen Sie mit uns — über den Kanal, der zu Ihnen passt.</p>
+    <a href="#pilot-form" class="btn btn-primary btn-lg" data-i18n="kontakt.btn">Pilotplatz anfragen →</a>
+    <div class="contact-grid">
+      <a class="contact-card glass" href="https://wa.me/491637794150?text=Hallo%20Zeynah%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eure%20Sprach-KI." target="_blank" rel="noopener">
+        <div class="contact-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <p data-i18n="k1.p">Schreiben Sie uns direkt — Antwort in Minuten</p>
+      </a>
+      <a class="contact-card glass" href="tel:+491776480485">
+        <div class="contact-icon">📞</div>
+        <h4 data-i18n="k2.h4">Telefon</h4>
+        <p>0177 6480485</p>
+      </a>
+      <a class="contact-card glass" href="https://calendly.com/nazandalkic/zeynah" target="_blank" rel="noopener">
+        <div class="contact-icon">📅</div>
+        <h4 data-i18n="k3.h4">Demo buchen</h4>
+        <p data-i18n="k3.p">15 Minuten — live, in Ihrer Branche</p>
+      </a>
+      <a class="contact-card glass" href="mailto:info@zeynah.cloud">
+        <div class="contact-icon">✉️</div>
+        <h4>E-Mail</h4>
+        <p data-i18n="k4.p">info@zeynah.cloud — Antwort in 24 h</p>
+      </a>
+      <a class="contact-card glass" id="pitchLink" href="assets/pitch/zeynah-pitch-immo-de.pdf" target="_blank" rel="noopener">
+        <div class="contact-icon">📊</div>
+        <h4 data-i18n="pitch.btn">Pitch-Deck (PDF)</h4>
+        <p>Zeynah · 10 Slides · 16:9</p>
+      </a>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+491776480485">0177 6480485</a> · <a href="mailto:info@zeynah.cloud">info@zeynah.cloud</a>
+    </div>
+  </div>
+</section>
+
+<!-- IMPRESSUM (dunkel) -->
+<section class="impressum-section" id="impressum">
+  <div class="container">
+    <div class="impressum-grid">
+      <div class="impressum-col">
+        <h4 data-i18n="imp.h1">📍 Impressum</h4>
+        <p><strong>Zeynah</strong><br>
+        Nazan Nil Dalkic<br>
+        Hamburg, Deutschland<br><br>
+        <a href="mailto:info@zeynah.cloud">info@zeynah.cloud</a><br>
+        <a href="tel:+491776480485">0177 6480485</a><br><br>
+        <span data-i18n="imp.ust">USt-IdNr.: [wird ergänzt]</span><br>
+        <span data-i18n="imp.hr">Handelsregister: [wird ergänzt]</span><br><br>
+        <small data-i18n="imp.note" style="color:var(--text-muted)">Rechtsverbindlich ist die deutsche Fassung.</small></p>
+      </div>
+      <div class="impressum-col">
+        <h4 data-i18n="imp.ds.h">🔒 Datenschutz (DSGVO)</h4>
+        <p data-i18n="imp.ds.p">DSGVO-konforme Datenverarbeitung.<br>
+        Server in der EU (Deutschland).<br>
+        Alle Daten verschlüsselt (AES-256).</p>
+        <p><strong data-i18n="imp.ds.resp">Verantwortlich:</strong><br>
+        Nazan Nil Dalkic<br>
+        info@zeynah.cloud<br><br>
+        <a href="#datenschutz" data-i18n="imp.ds.link">Vollständige Datenschutzerklärung</a></p>
+      </div>
+      <div class="impressum-col">
+        <h4 data-i18n="imp.legal.h">⚖️ Rechtliches</h4>
+        <p><a href="#agb" data-i18n="imp.legal.agb">AGB</a><br>
+        <a href="#datenschutz" data-i18n="imp.legal.ds">Datenschutz</a><br>
+        <a href="#widerruf" data-i18n="imp.legal.widerruf">Widerrufsbelehrung</a><br>
+        <a href="#avv" data-i18n="imp.legal.avv">Auftragsverarbeitung (AVV)</a><br><br>
+        <strong data-i18n="imp.legal.streit">Streitbeilegung:</strong><br>
+        <span data-i18n="imp.legal.eu">Plattform der EU-Kommission:</span><br>
+        <a href="https://ec.europa.eu/odr" target="_blank">ec.europa.eu/odr</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <p data-i18n="footer.l1">© 2026 Zeynah — Hamburg · 20+ Sprachen · DSGVO-konform · 24/7 erreichbar</p>
+    <p><a href="#impressum" data-i18n="footer.imp">Impressum</a> · <a href="#datenschutz" data-i18n="footer.ds">Datenschutz</a> · <a href="#agb" data-i18n="footer.agb">AGB</a></p>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+/* ═══ ÜBERSETZUNGEN — DE (Original im HTML), TR, EN, AR ═══ */
+const I18N = {
+tr: {
+'cookie.text':'🍪 Yalnızca teknik olarak gerekli çerezleri kullanıyoruz.','cookie.btn':'Anladım',
+'gate.btn':'🎙️ Sesli danışmanlığı başlat','gate.note':'Bu sırada ElevenLabs (ABD) hizmeti yüklenir.','gate.privacy':'Gizlilik',
+'nav.problem':'Sorun','nav.stimme':'Ses','nav.ablauf':'Süreç','nav.live':'Canlı Panel','nav.preise':'Fiyatlar','nav.faq':'SSS','nav.kontakt':'İletişim','nav.cta':'Pilot talep et',
+'hero.badge':'🚀 Gayrimenkul pilot programı — 3 yer mevcut','hero.h1':'İlgilenenler arıyor. <span class="accent">Her zaman</span> biri açıyor. Pazar 21.00’de bile.','hero.lead':'Zeynah alıcı ve kiracı taleplerini karşılar, bütçe ve finansmanı sorgular, exposé gönderir ve görüşme randevularını planlar — gece gündüz. 20+ dilde.','hero.cta1':'Pilot talep et →','hero.cta2':'Canlı paneli aç',
+'sos.h2':'Zeynah’ın tek bir hafta sonunda buldukları','sos.p':'Bu dört uyarı gerçek emlak ofislerinden. Uydurma değil.',
+'sos1.h4':'SOS · Kaçan alıcı','sos1.big':'12.400 €','sos1.p':'Cumartesi 21:15’te gelen satın alma talebi. Hiç yanıtlanmadı. Pazartesi rakiple imzaladı.',
+'sos2.h4':'SOS · Soğuyan portal talepleri','sos2.big':'10’da 9','sos2.p':'Bir saat içinde yanıt gelmezse ilgilenenler vazgeçiyor.',
+'sos3.h4':'SOS · Randevu ping-pong’u','sos3.big':'27 geri dönüş','sos3.p':'tek bir görüşme için: randevu, evraklar, finansman belgesi.',
+'sos4.h4':'SOS · Boş daire','sos4.big':'43 gün','sos4.p':'kira talepleri bekletildiği için daire boş kalıyor.',
+'steps.h2':'Üç adım. İnsansız karar yok.','steps.p':'Zeynah alır, sorgular, rezerve eder — ama asla tek başına karar vermez.',
+'step1.h3':'Alma','step1.p':'Telefon, WhatsApp, portal talebi, e-posta. Zeynah hepsini alır — ve düzenli bir işleme dönüştürür.',
+'step2.h3':'Sorgulama','step2.p':'Bütçe, finansman, öz sermaye, zaman çerçevesi: Zeynah sorar — en iyi çalışanınız gibi.',
+'step3.h3':'Rezervasyon','step3.p':'Görüşme randevusu takvime düşer — ancak bir insan onayladığında kesinleşir.',
+'order.h2':'Bir alıcı talebi böyle işler','order.p':'İlgilenen her zamanki gibi yazar — kısa, kanepeden, formsuz.',
+'o1.label':'İlgilenen yazıyor','o1.bubble':'Merhaba, Hafenstraße’deki 3 odalı daire hâlâ müsait mi? Fiyatı ne?',
+'o2.label':'Zeynah fark ediyor','o2.bubble':'Hafenstraße 12 — müsait, 349.000 €.<br><strong>Exposé gönderildi. Öz sermaye ve zaman çerçevesi soruldu.<br>Cumartesi 10:30 görüşme müsait.</strong> Randevu alınsın mı?',
+'o3.label':'Onay','o3.bubble':'Evet',
+'o4.label':'Çakışma yakalayıcı','o4.bubble':'<strong>Dikkat: Cumartesi 10:30’da aynı obje için başka bir görüşme var.</strong><br>Grup randevusu veya 11:30 önerilsin mi?',
+'voice.h2':'Kendiniz dinleyin — Zeynah’ın sesi','voice.p':'İnsan gibi konuşur. Ekip gibi çalışır. Gerçek konuşmalar, stüdyo kaydı değil.',
+'v1.label':'🏢 Satış','v1.h3':'Telefonda satın alma talebi','v1.p':'İlgilenen fiyat ve durum soruyor — Zeynah bütçe ve finansmanı sorgulayıp görüşmeyi rezerve ediyor.',
+'v2.label':'🔑 Kiralama','v2.h3':'Hafta sonu kira talebi','v2.p':'Zeynah hane büyüklüğü, gelir ve taşınma tarihini sorar — ve evrak listesini gönderir.',
+'dash.h2':'Canlı Sistem — Emlak kokpitiniz','dash.p':'Talepten görüşmeye, exposé’den komisyona. Her şey tek ekranda.',
+'dash.sub':'Demo görünümü','dash.upd':'● 30 saniyede bir güncellenir',
+'d1.h5':'Bugünkü yeni talepler','d1.big':'23','d1.p':'9 satın alma · 14 kiralama',
+'d2.h5':'Görüşmeler','d2.big':'16','d2.p':'bu hafta · hepsi onaylı',
+'d3.h5':'Sıcak alıcılar','d3.big':'7','d3.p':'finansman onaylı · hemen arayın',
+'d4.h5':'Kimi aramalı','d4.big':'4','d4.p':'geri arama gerekli · konuşma başlangıcıyla',
+'d5.h5':'Açık exposéler','d5.big':'12','d5.p':'gönderildi, yanıt yok · takip önerilir',
+'d6.h5':'Beklenen komisyon','d6.big':'84.500 €','d6.p':'5 nitelikli satın alımdan',
+'d7.h5':'Boş daireler','d7.big':'2 obje','d7.p':'ort. 18 gün · kira talepleri sürüyor',
+'d8.h5':'Portal yanıt oranı','d8.big':'%98','d8.p':'ImmoScout24 & Immowelt · son 7 gün',
+'dash.cta':'Gerçek canlı paneli aç →','dash.note':'Orijinali core.zeynah.cloud üzerinde çalışır — yeni sekmede açılır. Salt okunur demo erişimi.',
+'dash.bereiche':'12 alan: Kokpit, Telefon, WhatsApp, Talepler, Objeler, Görüşmeler, İlgilenenler, Exposéler, Alıcı dosyası, Kiracı dosyası, Mülk sahipleri, Komisyonlar',
+'vid.h4':'📹 Zeynah Gayrimenkul — film','vid.p':'İki emlakçı. Aynı daire. Rezerve rezervedir — dakikasına.','vid.meta':'HD · kendi dilinizde',
+'price.h2':'Hesabını bilen fiyatlar','price.p':'Ay sonunda aylık feshedilebilir. Asgari süre yok.',
+'roi.h3':'Tek bir kaçan komisyon = dokuz aydan fazla Zeynah Pro','roi.p':'12.400 € komisyon, bir cumartesi akşamı kaybedildi. <span class="roi-highlight">Zeynah her talebi alır — 21’de bile, Türkçe bile.</span>',
+'permonth':'€/ay','popular':'EN POPÜLER',
+'p1.note':'Bir emlak ofisi, ayda yaklaşık 300 talebe kadar',
+'p1.f1':'Telefon, WhatsApp ve e-posta ile çağrı & talep karşılama','p1.f2':'Portal taleplerini (ImmoScout24, Immowelt) düzenli kaydetme','p1.f3':'Görüşme onayları & hatırlatmalar','p1.f4':'Sınırsız çalışan',
+'p2.note':'Çalışan bir emlak ofisi için standart',
+'p2.f1':'Start’taki her şey','p2.f2':'İlgilenen sorgulaması: bütçe, finansman, zaman çerçevesi','p2.f3':'Çakışma uyarılı görüşme planlaması','p2.f4':'Exposé gönderimi & evrak listesi','p2.f5':'Takip önerili alıcı & kiracı dosyaları','p2.f6':'Arayüzde altı dil',
+'p3.note':'Birden fazla şube veya proje satışı',
+'p3.f1':'Pro’daki her şey','p3.f2':'Proje satışı: alıcı talepleri & görüşme günleri','p3.f3':'Emlak yazılımı & mevcut sistemlere bağlantı','p3.f4':'Sabit kişisel muhatap',
+'setup':'<strong>Kurulum bir kez ücretlendirilir: 1.900 – 4.900 €</strong> — süreçlere, sistemlere ve şubelere göre. Excel’den, eski sistemden veya listelerden taşımayı biz üstleniriz. <strong style="color:var(--accent-light);">12 aylık sözleşmede yarısını aylık taksitlerle mahsup ediyoruz.</strong> Tüm fiyatlar net. Canlıya geçişten ilk yanıtlanan talebe: yaklaşık 10 iş günü.',
+'form.h3':'🚀 Pilot yer talep et','form.p':'Yalnızca 3 yer mevcut. 24 saat içinde dönüş yaparız.',
+'f.firma':'Firma adı *','f.name':'Adınız *','f.tel':'Telefon *','f.mail':'E-posta *','f.branche':'Sektör *','f.woche':'Haftada yaklaşık talep','f.problem':'İlgilenen karşılamada en büyük sorununuz ne?',
+'ph.firma':'örn. Yılmaz İnşaat Ltd.','ph.name':'Ad ve soyad','ph.problem':'örn. pazartesiye kadar soğuyan hafta sonu ImmoScout24 talepleri...',
+'sel.waehlen':'Lütfen seçin','opt.sonst':'Diğer',
+'form.btn':'Talebi gönder →','form.note':'🔒 Verileriniz GDPR uyumlu işlenir. Spam yok, paylaşım yok.',
+'faq.h2':'Karar vericilerin gerçekten sordukları','faq.p':'Emlakçıların başlamadan önce bilmek istediği her şey.',
+'q1':'Zeynah emlak yazılımımla bağlanabilir mi?','a1':'Evet. Zeynah yaygın sistemlerle konuşur — Excel’den onOffice’e, Flowfact’e ve özel çözümlere. Premium tarifede özel arayüzler de kurarız.',
+'q2':'İnternet kesilirse ne olur?','a2':'Zeynah yedekli altyapıyla bulutta çalışır. Talepler otomatik olarak telafi edilir. Acil durumda yerel yazılımınıza dönebilirsiniz.',
+'q3':'Ekibimi kim eğitecek?','a3':'Tamamen biz üstleniriz. Yerinde veya video ile 2 saatlik eğitim. İlk 4 hafta her gün ulaşılabiliriz.',
+'q4':'Pilot nasıl işliyor?','a4':'Zeynah’ı gerçek objeleriniz, ilgilenenleriniz ve süreçlerinizle kurarız. Günlük işinizden gerçek taleplerle test edersiniz. Sonda sakin karar verirsiniz — drama yok.',
+'q5':'Uluslararası ilgilenenlerle de çalışır mı?','a5':'Evet. Zeynah 20’den fazla dilde anlar ve yanıtlar — ilgilenenleriniz alıştıkları gibi yazar ve konuşur. Arayüz Almanca, Türkçe, İngilizce, Arapça, Yunanca ve Rusça mevcut.',
+'q6':'Peki veri koruma?','a6':'GDPR uyumlu, AB’de sunucular, tüm veriler şifreli. Bunu baştan inşa ettik — sonradan eklemedik.',
+'q7':'Zeynah bir soruyu yanıtlayamazsa ne olur?','a7':'Zeynah bunu fark eder, geri arama ayarlar veya görüşmeyi çalışanınıza aktarır — otomatik ve arayan için kesintisiz.',
+'q8':'Zeynah bir ilgilenenin ciddi olup olmadığını anlar mı?','a8':'Evet. Zeynah bütçe, finansman onayı ve zaman çerçevesini sorar, sıcak alıcıları işaretler ve her şeyi düzenli kaydeder — Bestellerprinzip’e uygun.',
+'kontakt.h2':'Bir daha hiçbir ilgilenen kaçırmamaya hazır mısınız?','kontakt.p':'Bizimle konuşun — size uyan kanaldan.','kontakt.btn':'Pilot yeri talep et →',
+'k1.p':'Bize doğrudan yazın — dakikalar içinde yanıt','k2.h4':'Telefon','k3.h4':'Demo ayırt','k3.p':'15 dakika — canlı, sizin sektörünüzde','k4.p':'info@zeynah.cloud — 24 saatte yanıt','pitch.btn':'Sunum (PDF)',
+'footer.l1':'© 2026 Zeynah — Hamburg · 20+ dil · GDPR uyumlu · 7/24 ulaşılabilir',
+'alert':'Talebiniz için teşekkürler! 24 saat içinde dönüş yapacağız.',
+'imp.h1':'📍 Künye','imp.ust':'KDV No: [eklenecek]','imp.hr':'Ticaret Sicili: [eklenecek]','imp.note':'Hukuken bağlayıcı olan Almanca metindir.',
+'imp.ds.h':'🔒 Veri Koruma (GDPR)','imp.ds.p':'GDPR uyumlu veri işleme.<br>AB’de sunucular (Almanya).<br>Tüm veriler şifreli (AES-256).','imp.ds.resp':'Sorumlu:','imp.ds.link':'Tam Gizlilik Politikası',
+'imp.legal.h':'⚖️ Yasal','imp.legal.agb':'Kullanım Koşulları','imp.legal.ds':'Gizlilik','imp.legal.widerruf':'Cayma Hakkı','imp.legal.avv':'Veri İşleme Sözleşmesi (DPA)','imp.legal.streit':'Uyuşmazlık Çözümü:','imp.legal.eu':'AB Komisyonu platformu:',
+'footer.imp':'Künye','footer.ds':'Gizlilik','footer.agb':'Koşullar',
+'films.h2':'Daha fazla film — kısa & gerçek',
+'films.p':'Emlak günlüğünden dört klip. Kısaca izleyin, hemen anlayın.',
+'film1.t':'⏰ Süreler — kimse açmazsa ne olur',
+'film2.t':'🤝 Güven — ilk izlenim önemlidir',
+'film3.t':'☀️ Zeynah ile bir sabah',
+'film4.t':'🔍 Wanted — kaçan ilgilenen',
+'opt.makler':'Emlak ofisi',
+'opt.verwaltung':'Mülk yönetimi',
+'opt.projekt':'Proje geliştirme & müteahhit',},
+en: {
+'cookie.text':'🍪 We only use technically necessary cookies.','cookie.btn':'Got it',
+'gate.btn':'🎙️ Start voice assistant','gate.note':'This loads a service from ElevenLabs (USA).','gate.privacy':'Privacy',
+'nav.problem':'The Problem','nav.stimme':'Voice','nav.ablauf':'How it works','nav.live':'Live Dashboard','nav.preise':'Pricing','nav.faq':'FAQ','nav.kontakt':'Contact','nav.cta':'Request pilot',
+'hero.badge':'🚀 Real estate pilot program — 3 spots available','hero.h1':'Buyers are calling. <span class="accent">Someone</span> always answers. Even Sunday at 9 p.m.','hero.lead':'Zeynah takes buyer and tenant inquiries, qualifies budget and financing, sends out exposés and books viewings — around the clock. In 20+ languages.','hero.cta1':'Request pilot →','hero.cta2':'Open live dashboard',
+'sos.h2':'What Zeynah finds in a single weekend','sos.p':'These four warnings come from real agencies. Not made up.',
+'sos1.h4':'SOS · Missed buyer','sos1.big':'€12,400','sos1.p':'Purchase inquiry from Saturday, 9:15 p.m. Never answered. On Monday he signed with a competitor.',
+'sos2.h4':'SOS · Portal leads gone cold','sos2.big':'9 of 10','sos2.p':'Prospects drop off when no answer comes within an hour.',
+'sos3.h4':'SOS · Viewing ping-pong','sos3.big':'27 follow-ups','sos3.p':'for a single viewing: date, documents, proof of financing.',
+'sos4.h4':'SOS · Vacancy','sos4.big':'43 days','sos4.p':'the flat sits empty because rental inquiries were left unanswered.',
+'steps.h2':'Three steps. No decision without a human.','steps.p':'Zeynah takes in, qualifies, books — but never decides alone.',
+'step1.h3':'Take in','step1.p':'Call, WhatsApp, portal inquiry, email. Zeynah takes it all — and turns it into a clean ticket.',
+'step2.h3':'Qualify','step2.p':'Budget, financing, equity, timeline: Zeynah asks — like your best employee.',
+'step3.h3':'Book','step3.p':'The viewing lands in the calendar — only when a human confirms is it fixed.',
+'order.h2':'How a buyer inquiry flows','order.p':'The prospect writes as always — short, from the sofa, no form.',
+'o1.label':'Prospect writes','o1.bubble':'Hi, is the 3-room flat on Hafenstraße still available? What does it cost?',
+'o2.label':'Zeynah detects','o2.bubble':'Hafenstraße 12 — available, €349,000.<br><strong>Exposé sent. Equity and timeline asked.<br>Viewing Saturday 10:30 open.</strong> Book the slot?',
+'o3.label':'Approval','o3.bubble':'Yes',
+'o4.label':'The collision catch','o4.bubble':'<strong>Attention: Saturday 10:30 already has a viewing for the same property.</strong><br>Suggest a group slot or 11:30?',
+'voice.h2':'Hear for yourself — the voice of Zeynah','voice.p':'Sounds like a human. Works like a team. Real conversations, no studio recordings.',
+'v1.label':'🏢 Sales','v1.h3':'Purchase inquiry on the phone','v1.p':'The prospect asks about price and condition — Zeynah qualifies budget and financing and books the viewing.',
+'v2.label':'🔑 Rentals','v2.h3':'Rental inquiry on the weekend','v2.p':'Zeynah asks household size, income and move-in date — and sends the document checklist.',
+'dash.h2':'The live system — your agency cockpit','dash.p':'Inquiry to viewing, exposé to commission. All on one screen.',
+'dash.sub':'Demo view','dash.upd':'● Updates every 30 seconds',
+'d1.h5':'New inquiries today','d1.big':'23','d1.p':'9 purchase · 14 rental',
+'d2.h5':'Viewings','d2.big':'16','d2.p':'this week · all confirmed',
+'d3.h5':'Hot buyers','d3.big':'7','d3.p':'financing confirmed · call now',
+'d4.h5':'Who to call','d4.big':'4','d4.p':'callbacks due · with talking points',
+'d5.h5':'Open exposés','d5.big':'12','d5.p':'sent, no reply · follow-up recommended',
+'d6.h5':'Commission in sight','d6.big':'€84,500','d6.p':'from 5 qualified purchases',
+'d7.h5':'Vacancies','d7.big':'2 properties','d7.p':'avg. 18 days · rental inquiries running',
+'d8.h5':'Portal response rate','d8.big':'98 %','d8.p':'ImmoScout24 & Immowelt · last 7 days',
+'dash.cta':'Open the real live dashboard →','dash.note':'The original runs on core.zeynah.cloud — opens in a new tab. Read-only demo access.',
+'dash.bereiche':'12 areas: Cockpit, Phone, WhatsApp, Inquiries, Properties, Viewings, Prospects, Exposés, Buyer files, Tenant files, Landlords, Commissions',
+'vid.h4':'📹 Zeynah for real estate — the film','vid.p':'Two agents. The same flat. Reserved is reserved — to the minute.','vid.meta':'HD · in your language',
+'price.h2':'Prices that pay off','price.p':'Cancellable monthly at month-end. No minimum term.',
+'roi.h3':'One single missed commission = more than nine months of Zeynah Pro','roi.p':'€12,400 commission, lost on a Saturday evening. <span class="roi-highlight">Zeynah takes every inquiry — even at 9 p.m., even in Turkish.</span>',
+'permonth':'€/month','popular':'MOST POPULAR',
+'p1.note':'One agency, up to approx. 300 inquiries/month',
+'p1.f1':'Call & inquiry handling via phone, WhatsApp & email','p1.f2':'Structured capture of portal inquiries (ImmoScout24, Immowelt)','p1.f3':'Viewing confirmations & reminders','p1.f4':'Unlimited staff',
+'p2.note':'The standard for a running agency',
+'p2.f1':'Everything in Start','p2.f2':'Prospect qualification: budget, financing, timeline','p2.f3':'Viewing planning with collision warning','p2.f4':'Exposé dispatch & document checklist','p2.f5':'Buyer & tenant files with follow-up advice','p2.f6':'Six languages in the interface',
+'p3.note':'Multiple locations or project sales',
+'p3.f1':'Everything in Pro','p3.f2':'Project sales: buyer inquiries & viewing days','p3.f3':'Integration with agency software & existing systems','p3.f4':'Dedicated personal contact',
+'setup':'<strong>One-time setup fee: €1,900 – €4,900</strong> — depending on processes, systems and locations. We handle migration from Excel, legacy systems or lists. <strong style="color:var(--accent-light);">With a 12-month term we credit half of it against the monthly rates.</strong> All prices net. From go-live to the first answered inquiry: approx. 10 working days.',
+'form.h3':'🚀 Request a pilot spot','form.p':'Only 3 spots available. We reply within 24 hours.',
+'f.firma':'Company name *','f.name':'Your name *','f.tel':'Phone *','f.mail':'Email *','f.branche':'Industry *','f.woche':'Approx. inquiries per week','f.problem':'What is your biggest problem handling prospects?',
+'ph.firma':'e.g. Smith Construction Ltd.','ph.name':'First and last name','ph.problem':'e.g. weekend inquiries from ImmoScout24 that are cold by Monday...',
+'sel.waehlen':'Please choose','opt.sonst':'Other',
+'form.btn':'Send inquiry →','form.note':'🔒 Your data is processed GDPR-compliant. No spam, no sharing.',
+'faq.h2':'What decision-makers really ask','faq.p':'Everything agents want to know before starting.',
+'q1':'Can Zeynah connect to my agency software?','a1':'Yes. Zeynah talks to the common systems — from Excel to onOffice, Flowfact and custom solutions. In the Premium plan we also build custom interfaces.',
+'q2':'What happens if the internet goes down?','a2':'Zeynah runs in the cloud with redundant infrastructure. Inquiries are caught up automatically. In an emergency you can always fall back on your local software.',
+'q3':'Who trains my people?','a3':'We handle that completely. A 2-hour training on site or via video. For the first 4 weeks we are reachable daily.',
+'q4':'How does the pilot work?','a4':'We set Zeynah up with your real properties, prospects and processes. You test with real inquiries from your daily work. In the end you decide calmly — no drama.',
+'q5':'Does it work with international prospects?','a5':'Yes. Zeynah understands and replies in over 20 languages — your prospects write and speak as they are used to. The interface comes in German, Turkish, English, Arabic, Greek and Russian.',
+'q6':'What about data protection?','a6':'GDPR-compliant, servers in the EU, all data encrypted. We built that in from the start — not retrofitted.',
+'q7':'What happens when Zeynah cannot answer a question?','a7':'Zeynah recognizes that, arranges a callback or hands the call to your human staff — automatically and seamlessly for the caller.',
+'q8':'Does Zeynah know whether a prospect is serious?','a8':'Yes. Zeynah asks budget, proof of financing and timeline, flags hot buyers and documents everything cleanly — also in line with the Bestellerprinzip.',
+'kontakt.h2':'Ready to never miss a prospect again?','kontakt.p':'Talk to us — via the channel that suits you.','kontakt.btn':'Request pilot spot →',
+'k1.p':'Write to us directly — reply in minutes','k2.h4':'Phone','k3.h4':'Book a demo','k3.p':'15 minutes — live, in your industry','k4.p':'info@zeynah.cloud — reply within 24 h','pitch.btn':'Pitch deck (PDF)',
+'footer.l1':'© 2026 Zeynah — Hamburg · 20+ languages · GDPR-compliant · available 24/7',
+'alert':'Thanks for your request! We’ll get back to you within 24 hours.',
+'imp.h1':'📍 Legal Notice','imp.ust':'VAT ID: [to be added]','imp.hr':'Commercial Register: [to be added]','imp.note':'Only the German version is legally binding.',
+'imp.ds.h':'🔒 Privacy (GDPR)','imp.ds.p':'GDPR-compliant data processing.<br>Servers in the EU (Germany).<br>All data encrypted (AES-256).','imp.ds.resp':'Responsible:','imp.ds.link':'Full Privacy Policy',
+'imp.legal.h':'⚖️ Legal','imp.legal.agb':'Terms & Conditions','imp.legal.ds':'Privacy','imp.legal.widerruf':'Right of Withdrawal','imp.legal.avv':'Data Processing Agreement (DPA)','imp.legal.streit':'Dispute Resolution:','imp.legal.eu':'EU Commission platform:',
+'footer.imp':'Legal Notice','footer.ds':'Privacy','footer.agb':'Terms',
+'films.h2':'More films — short & real',
+'films.p':'Four clips from agency life. Quick to watch, instantly clear.',
+'film1.t':'⏰ Deadlines — what happens when no one answers',
+'film2.t':'🤝 Trust — the first impression counts',
+'film3.t':'☀️ A morning with Zeynah',
+'film4.t':'🔍 Wanted — the missed prospect',
+'opt.makler':'Real estate agency',
+'opt.verwaltung':'Property management',
+'opt.projekt':'Development & project sales',},
+ar: {
+'cookie.text':'🍪 نستخدم فقط ملفات تعريف الارتباط الضرورية تقنياً.','cookie.btn':'فهمت',
+'gate.btn':'🎙️ ابدأ الاستشارة الصوتية','gate.note':'سيتم تحميل خدمة من ElevenLabs (الولايات المتحدة).','gate.privacy':'الخصوصية',
+'nav.problem':'المشكلة','nav.stimme':'الصوت','nav.ablauf':'كيف تعمل','nav.live':'لوحة المتابعة','nav.preise':'الأسعار','nav.faq':'الأسئلة','nav.kontakt':'اتصل بنا','nav.cta':'اطلب النسخة التجريبية',
+'hero.badge':'🚀 برنامج تجريبي للعقارات — 3 أماكن متاحة','hero.h1':'المهتمون يتصلون. <span class="accent">دائماً</span> هناك من يرد. حتى الأحد في التاسعة مساءً.','hero.lead':'تستقبل Zeynah طلبات المشترين والمستأجرين، وتتحقق من الميزانية والتمويل، وترسل ملفات العقار وتحجز مواعيد المعاينة — على مدار الساعة. بأكثر من 20 لغة.','hero.cta1':'اطلب النسخة التجريبية →','hero.cta2':'افتح لوحة المتابعة',
+'sos.h2':'ما تكتشفه Zeynah في عطلة نهاية أسبوع واحدة','sos.p':'هذه التحذيرات الأربعة من مكاتب عقارية حقيقية. ليست من الخيال.',
+'sos1.h4':'SOS · مشترٍ ضائع','sos1.big':'12.400 €','sos1.p':'طلب شراء يوم السبت 21:15. لم يُجَب عليه أبداً. يوم الاثنين وقّع مع المنافس.',
+'sos2.h4':'SOS · طلبات البوابات الباردة','sos2.big':'9 من 10','sos2.p':'ينسحب المهتمون إذا لم يصلهم رد خلال ساعة.',
+'sos3.h4':'SOS · مراسلات المعاينة','sos3.big':'27 استفساراً','sos3.p':'لمعاينة واحدة فقط: الموعد، المستندات، إثبات التمويل.',
+'sos4.h4':'SOS · شقة شاغرة','sos4.big':'43 يوماً','sos4.p':'تبقى الشقة فارغة لأن طلبات الإيجار بقيت دون رد.',
+'steps.h2':'ثلاث خطوات. لا قرار بدون إنسان.','steps.p':'Zeynah تستقبل وتؤهل وتحجز — لكنها لا تقرر وحدها أبداً.',
+'step1.h3':'الاستقبال','step1.p':'مكالمة، واتساب، طلب من البوابة، بريد إلكتروني. Zeynah تستقبل كل شيء — وتحوّله إلى ملف منظم.',
+'step2.h3':'التأهيل','step2.p':'الميزانية، التمويل، رأس المال الذاتي، الإطار الزمني: Zeynah تسأل — مثل أفضل موظف لديك.',
+'step3.h3':'الحجز','step3.p':'يصل موعد المعاينة إلى التقويم — ولا يصبح نهائياً إلا بعد تأكيد إنسان.',
+'order.h2':'هكذا يسير طلب مشترٍ','order.p':'المهتم يكتب كما يكتب دائماً — باختصار، من الأريكة، بدون نموذج.',
+'o1.label':'المهتم يكتب','o1.bubble':'مرحباً، هل شقة الغرف الثلاث في شارع Hafenstraße ما زالت متاحة؟ وكم سعرها؟',
+'o2.label':'زينة تكتشف','o2.bubble':'العقار Hafenstraße 12 — متاح، 349.000 €.<br><strong>تم إرسال ملف العقار. تم سؤال رأس المال الذاتي والإطار الزمني.<br>معاينة السبت 10:30 متاحة.</strong> هل أحجز الموعد؟',
+'o3.label':'الاعتماد','o3.bubble':'نعم',
+'o4.label':'صائد التعارضات','o4.bubble':'<strong>تنبيه: السبت 10:30 توجد معاينة أخرى لنفس العقار.</strong><br>هل أقترح موعداً جماعياً أم 11:30؟',
+'voice.h2':'اسمع بنفسك — صوت زينة','voice.p':'تبدو كإنسان. تعمل كفريق. محادثات حقيقية، ليست تسجيلات استوديو.',
+'v1.label':'🏢 البيع','v1.h3':'طلب شراء عبر الهاتف','v1.p':'المهتم يسأل عن السعر والحالة — Zeynah تتحقق من الميزانية والتمويل وتحجز المعاينة.',
+'v2.label':'🔑 التأجير','v2.h3':'طلب إيجار في عطلة نهاية الأسبوع','v2.p':'Zeynah تسأل عن حجم الأسرة والدخل وموعد الانتقال — وترسل قائمة المستندات.',
+'dash.h2':'النظام المباشر — لوحة قيادة مكتبك','dash.p':'من الطلب إلى المعاينة، ومن ملف العقار إلى العمولة. كل شيء على شاشة واحدة.',
+'dash.sub':'عرض تجريبي','dash.upd':'● يُحدَّث كل 30 ثانية',
+'d1.h5':'طلبات جديدة اليوم','d1.big':'23','d1.p':'9 شراء · 14 إيجار',
+'d2.h5':'المعاينات','d2.big':'16','d2.p':'هذا الأسبوع · كلها مؤكدة',
+'d3.h5':'مشترون جادون','d3.big':'7','d3.p':'التمويل مؤكد · اتصل فوراً',
+'d4.h5':'من نتصل به','d4.big':'4','d4.p':'معاودات مستحقة · مع نقاط للحديث',
+'d5.h5':'ملفات مفتوحة','d5.big':'12','d5.p':'أُرسلت، بلا رد · يُنصح بالمتابعة',
+'d6.h5':'عمولة متوقعة','d6.big':'84.500 €','d6.p':'من 5 عمليات شراء مؤهلة',
+'d7.h5':'شواغر','d7.big':'عقاران','d7.p':'بمعدل 18 يوماً · طلبات الإيجار مستمرة',
+'d8.h5':'معدل الرد على البوابات','d8.big':'98 %','d8.p':'ImmoScout24 و Immowelt · آخر 7 أيام',
+'dash.cta':'افتح لوحة المتابعة الحقيقية →','dash.note':'الأصل يعمل على core.zeynah.cloud — يفتح في تبويب جديد. وصول تجريبي للقراءة فقط.',
+'dash.bereiche':'12 قسماً: لوحة القيادة، الهاتف، واتساب، الطلبات، العقارات، المعاينات، المهتمون، الملفات التعريفية، ملفات المشترين، ملفات المستأجرين، المُلّاك، العمولات',
+'vid.h4':'📹 Zeynah للعقارات — الفيلم','vid.p':'سمساران. الشقة نفسها. المحجوز محجوز — بالدقيقة.','vid.meta':'HD · بلغتك',
+'price.h2':'أسعار تستحق','price.p':'قابل للإلغاء شهرياً في نهاية الشهر. لا حد أدنى للمدة.',
+'roi.h3':'عمولة واحدة ضائعة = أكثر من تسعة أشهر من Zeynah Pro','roi.p':'12.400 € عمولة، ضاعت في مساء سبت. <span class="roi-highlight">Zeynah تستقبل كل طلب — حتى في التاسعة مساءً، وحتى بالتركية.</span>',
+'permonth':'€/شهر','popular':'الأكثر طلباً',
+'p1.note':'مكتب عقاري واحد، حتى 300 طلب شهرياً تقريباً',
+'p1.f1':'استقبال المكالمات والطلبات عبر الهاتف وواتساب والبريد','p1.f2':'تسجيل منظم لطلبات البوابات (ImmoScout24، Immowelt)','p1.f3':'تأكيدات المعاينة والتذكيرات','p1.f4':'موظفون بلا حدود',
+'p2.note':'المعيار لمكتب عقاري عامل',
+'p2.f1':'كل ما في Start','p2.f2':'تأهيل المهتمين: الميزانية، التمويل، الإطار الزمني','p2.f3':'تخطيط المعاينات مع تحذير التعارض','p2.f4':'إرسال ملف العقار وقائمة المستندات','p2.f5':'ملفات المشترين والمستأجرين مع توصية المتابعة','p2.f6':'ست لغات في الواجهة',
+'p3.note':'عدة فروع أو مبيعات مشاريع',
+'p3.f1':'كل ما في Pro','p3.f2':'مبيعات المشاريع: طلبات المشترين وأيام المعاينة','p3.f3':'الربط مع برامج السمسرة والأنظمة القائمة','p3.f4':'مسؤول تواصل شخصي ثابت',
+'setup':'<strong>رسوم الإعداد لمرة واحدة: 1,900 – 4,900 يورو</strong> — حسب العمليات والأنظمة والمواقع. نتولى النقل من Excel أو الأنظمة القديمة أو القوائم. <strong style="color:var(--accent-light);">مع عقد 12 شهراً نحتسب نصفها من الأقساط الشهرية.</strong> جميع الأسعار صافية. من الانطلاق حتى أول طلب مُجاب: حوالي 10 أيام عمل.',
+'form.h3':'🚀 اطلب مكاناً تجريبياً','form.p':'3 أماكن فقط متاحة. نرد خلال 24 ساعة.',
+'f.firma':'اسم الشركة *','f.name':'اسمك *','f.tel':'الهاتف *','f.mail':'البريد الإلكتروني *','f.branche':'القطاع *','f.woche':'عدد الطلبات أسبوعياً تقريباً','f.problem':'ما أكبر مشكلة لديك في استقبال المهتمين؟',
+'ph.firma':'مثال: شركة البناء المتحدة','ph.name':'الاسم الأول والأخير','ph.problem':'مثلاً طلبات ImmoScout24 في عطلة الأسبوع التي تبرد حتى الاثنين...',
+'sel.waehlen':'اختر من فضلك','opt.sonst':'أخرى',
+'form.btn':'أرسل الطلب →','form.note':'🔒 بياناتك تُعالج وفق GDPR. لا رسائل مزعجة ولا مشاركة.',
+'faq.h2':'ما يسأله صناع القرار حقاً','faq.p':'كل ما يريد السماسرة معرفته قبل البدء.',
+'q1':'هل يمكن لـ Zeynah الاتصال ببرنامج السمسرة الخاص بي؟','a1':'نعم. تتحدث Zeynah مع الأنظمة الشائعة — من Excel إلى onOffice وFlowfact والحلول المخصصة. في باقة Premium نبني أيضاً واجهات مخصصة.',
+'q2':'ماذا يحدث إذا انقطع الإنترنت؟','a2':'زينة تعمل في السحابة ببنية تحتية احتياطية. تُستكمل الطلبات تلقائياً. وفي الطوارئ يمكنك دائماً الرجوع إلى برنامجك المحلي.',
+'q3':'من يدرب فريقي؟','a3':'نتولى ذلك بالكامل. تدريب ساعتين في الموقع أو عبر الفيديو. في الأسابيع الأربعة الأولى نحن متاحون يومياً.',
+'q4':'كيف تسير النسخة التجريبية؟','a4':'نُعدّ Zeynah بعقاراتك ومهتميك وعملياتك الحقيقية. تختبرها بطلبات حقيقية من يومك. وفي النهاية تقرر بهدوء — بدون دراما.',
+'q5':'هل يعمل مع المهتمين الدوليين؟','a5':'نعم. تفهم Zeynah وترد بأكثر من 20 لغة — مهتموك يكتبون ويتحدثون كما اعتادوا. الواجهة متاحة بالألمانية والتركية والإنجليزية والعربية واليونانية والروسية.',
+'q6':'وماذا عن حماية البيانات؟','a6':'متوافقة مع GDPR، خوادم في الاتحاد الأوروبي، جميع البيانات مشفرة. بنينا ذلك منذ البداية — لم نضفه لاحقاً.',
+'q7':'ماذا يحدث إذا لم تستطع زينة الإجابة عن سؤال؟','a7':'زينة تدرك ذلك، وترتب معاودة اتصال أو تحول المكالمة إلى موظفيك — تلقائياً وبسلاسة للمتصل.',
+'q8':'هل تدرك Zeynah ما إذا كان المهتم جاداً؟','a8':'نعم. تسأل Zeynah عن الميزانية وإثبات التمويل والإطار الزمني، وتعلّم المشترين الجادين وتوثق كل شيء بوضوح — بما يتوافق مع مبدأ Bestellerprinzip.',
+'kontakt.h2':'مستعد لألا يفوتك أي مهتم بعد الآن؟','kontakt.p':'تحدث معنا — عبر القناة التي تناسبك.','kontakt.btn':'اطلب المكان التجريبي →',
+'k1.p':'راسلنا مباشرة — الرد خلال دقائق','k2.h4':'الهاتف','k3.h4':'احجز عرضاً','k3.p':'15 دقيقة — مباشرة، في مجالك','k4.p':'info@zeynah.cloud — الرد خلال 24 ساعة','pitch.btn':'العرض التقديمي (PDF)',
+'footer.l1':'© 2026 زينة — هامبورغ · أكثر من 20 لغة · متوافق مع GDPR · متاح 24/7',
+'alert':'شكراً لطلبك! سنعود إليك خلال 24 ساعة.',
+'imp.h1':'📍 البيانات القانونية','imp.ust':'رقم ضريبة القيمة المضافة: [يُضاف لاحقاً]','imp.hr':'السجل التجاري: [يُضاف لاحقاً]','imp.note':'النسخة الألمانية هي الملزمة قانوناً.',
+'imp.ds.h':'🔒 حماية البيانات (GDPR)','imp.ds.p':'معالجة بيانات متوافقة مع GDPR.<br>خوادم في الاتحاد الأوروبي (ألمانيا).<br>جميع البيانات مشفرة (AES-256).','imp.ds.resp':'المسؤول:','imp.ds.link':'سياسة الخصوصية الكاملة',
+'imp.legal.h':'⚖️ القانونية','imp.legal.agb':'الشروط والأحكام','imp.legal.ds':'الخصوصية','imp.legal.widerruf':'حق الانسحاب','imp.legal.avv':'اتفاقية معالجة البيانات (DPA)','imp.legal.streit':'تسوية النزاعات:','imp.legal.eu':'منصة المفوضية الأوروبية:',
+'footer.imp':'البيانات القانونية','footer.ds':'الخصوصية','footer.agb':'الشروط',
+'films.h2':'المزيد من المقاطع — قصيرة وحقيقية',
+'films.p':'أربعة مقاطع من يوميات السمسرة. شاهد بسرعة، وافهم فوراً.',
+'film1.t':'⏰ المواعيد النهائية — ماذا يحدث عندما لا يرد أحد',
+'film2.t':'🤝 الثقة — الانطباع الأول يهم',
+'film3.t':'☀️ صباح مع Zeynah',
+'film4.t':'🔍 Wanted — المهتم الضائع',
+'opt.makler':'مكتب عقاري',
+'opt.verwaltung':'إدارة عقارات',
+'opt.projekt':'تطوير مشاريع ومقاولون',},
+el: {
+'cookie.text':'🍪 Χρησιμοποιούμε μόνο τεχνικά απαραίτητα cookies.','cookie.btn':'Το κατάλαβα',
+'gate.btn':'🎙️ Ξεκινήστε τη φωνητική συμβουλή','gate.note':'Φορτώνεται υπηρεσία της ElevenLabs (ΗΠΑ).','gate.privacy':'Απόρρητο',
+'nav.problem':'Το πρόβλημα','nav.stimme':'Φωνή','nav.ablauf':'Πώς λειτουργεί','nav.live':'Ζωντανός πίνακας','nav.preise':'Τιμές','nav.faq':'FAQ','nav.kontakt':'Επικοινωνία','nav.cta':'Ζητήστε πιλοτικό',
+'hero.badge':'🚀 Πιλοτικό πρόγραμμα για ακίνητα — 3 διαθέσιμες θέσεις','hero.h1':'Οι ενδιαφερόμενοι καλούν. <span class="accent">Πάντα</span> κάποιος απαντά. Ακόμη και Κυριακή στις 9 το βράδυ.','hero.lead':'Η Zeynah δέχεται αιτήματα αγοραστών και ενοικιαστών, ελέγχει προϋπολογισμό και χρηματοδότηση, στέλνει φυλλάδια και κλείνει ραντεβού ξενάγησης — όλο το 24ωρο. Σε 20+ γλώσσες.','hero.cta1':'Ζητήστε πιλοτικό →','hero.cta2':'Ανοίξτε τον ζωντανό πίνακα',
+'sos.h2':'Τι βρίσκει η Zeynah σε ένα μόνο Σαββατοκύριακο','sos.p':'Αυτές οι τέσσερις προειδοποιήσεις προέρχονται από πραγματικά μεσιτικά γραφεία. Δεν είναι φαντασία.',
+'sos1.h4':'SOS · Χαμένος αγοραστής','sos1.big':'12.400 €','sos1.p':'Αίτημα αγοράς το Σάββατο 21:15. Δεν απαντήθηκε ποτέ. Τη Δευτέρα υπέγραψε με τον ανταγωνιστή.',
+'sos2.h4':'SOS · Κρύα αιτήματα πυλών','sos2.big':'9 στις 10','sos2.p':'Οι ενδιαφερόμενοι εγκαταλείπουν αν δεν έρθει απάντηση μέσα σε μία ώρα.',
+'sos3.h4':'SOS · Πινγκ-πονγκ ραντεβού','sos3.big':'27 ερωτήσεις','sos3.p':'για μία μόνο ξενάγηση: ραντεβού, έγγραφα, απόδειξη χρηματοδότησης.',
+'sos4.h4':'SOS · Κενό ακίνητο','sos4.big':'43 ημέρες','sos4.p':'το διαμέρισμα μένει κενό γιατί τα αιτήματα ενοικίασης έμειναν αναπάντητα.',
+'steps.h2':'Τρία βήματα. Καμία απόφαση χωρίς άνθρωπο.','steps.p':'Η Zeynah δέχεται, αξιολογεί, κλείνει — αλλά δεν αποφασίζει ποτέ μόνη της.',
+'step1.h3':'Λήψη','step1.p':'Κλήση, WhatsApp, αίτημα πύλης, e-mail. Η Zeynah τα δέχεται όλα — και τα κάνει τακτικό φάκελο.',
+'step2.h3':'Αξιολόγηση','step2.p':'Προϋπολογισμός, χρηματοδότηση, ίδια κεφάλαια, χρονοδιάγραμμα: η Zeynah ρωτά — σαν τον καλύτερό σας υπάλληλο.',
+'step3.h3':'Κράτηση','step3.p':'Το ραντεβού μπαίνει στο ημερολόγιο — οριστικοποιείται μόνο όταν επιβεβαιώσει άνθρωπος.',
+'order.h2':'Έτσι ρέει ένα αίτημα αγοραστή','order.p':'Ο ενδιαφερόμενος γράφει όπως πάντα — σύντομα, από τον καναπέ, χωρίς φόρμα.',
+'o1.label':'Ο ενδιαφερόμενος γράφει','o1.bubble':'Γεια σας, το διαμέρισμα 3 δωματίων στην Hafenstraße είναι ακόμη διαθέσιμο; Πόσο κοστίζει;',
+'o2.label':'Η Zeynah εντοπίζει','o2.bubble':'Hafenstraße 12 — διαθέσιμο, 349.000 €.<br><strong>Το φυλλάδιο εστάλη. Ζητήθηκαν ίδια κεφάλαια και χρονοδιάγραμμα.<br>Ξενάγηση Σάββατο 10:30 ελεύθερη.</strong> Να κλείσω ραντεβού;',
+'o3.label':'Έγκριση','o3.bubble':'Ναι',
+'o4.label':'Ο ανιχνευτής συγκρούσεων','o4.bubble':'<strong>Προσοχή: το Σάββατο 10:30 υπάρχει ήδη ξενάγηση για το ίδιο ακίνητο.</strong><br>Να προτείνω ομαδικό ραντεβού ή 11:30;',
+'voice.h2':'Ακούστε οι ίδιοι — η φωνή της Zeynah','voice.p':'Ακούγεται σαν άνθρωπος. Δουλεύει σαν ομάδα. Πραγματικές συνομιλίες, όχι ηχογραφήσεις στούντιο.',
+'v1.label':'🏢 Πώληση','v1.h3':'Αίτημα αγοράς τηλεφωνικά','v1.p':'Ο ενδιαφερόμενος ρωτά τιμή και κατάσταση — η Zeynah αξιολογεί προϋπολογισμό και χρηματοδότηση και κλείνει την ξενάγηση.',
+'v2.label':'🔑 Ενοικίαση','v2.h3':'Αίτημα ενοικίασης το Σαββατοκύριακο','v2.p':'Η Zeynah ρωτά μέγεθος νοικοκυριού, εισόδημα και ημερομηνία μετακόμισης — και στέλνει τη λίστα εγγράφων.',
+'dash.h2':'Το ζωντανό σύστημα — το cockpit του γραφείου σας','dash.p':'Από το αίτημα στην ξενάγηση, από το φυλλάδιο στην προμήθεια. Όλα σε μία οθόνη.',
+'dash.sub':'Προβολή demo','dash.upd':'● Ενημερώνεται κάθε 30 δευτερόλεπτα',
+'d1.h5':'Νέα αιτήματα σήμερα','d1.big':'23','d1.p':'9 αγορά · 14 ενοικίαση',
+'d2.h5':'Ξεναγήσεις','d2.big':'16','d2.p':'αυτή την εβδομάδα · όλα επιβεβαιωμένα',
+'d3.h5':'Ζεστοί αγοραστές','d3.big':'7','d3.p':'χρηματοδότηση επιβεβαιωμένη · καλέστε τώρα',
+'d4.h5':'Ποιον να καλέσω','d4.big':'4','d4.p':'επανάκλησεις απαιτούνται · με σημεία συζήτησης',
+'d5.h5':'Ανοιχτά φυλλάδια','d5.big':'12','d5.p':'εστάλησαν, χωρίς απάντηση · προτείνεται επαφή',
+'d6.h5':'Προμήθεια εν αναμονή','d6.big':'84.500 €','d6.p':'από 5 αξιολογημένες αγορές',
+'d7.h5':'Κενά ακίνητα','d7.big':'2 ακίνητα','d7.p':'μ.ο. 18 ημέρες · αιτήματα ενοικίασης τρέχουν',
+'d8.h5':'Ποσοστό απάντησης πυλών','d8.big':'98 %','d8.p':'ImmoScout24 & Immowelt · τελευταίες 7 ημέρες',
+'dash.cta':'Ανοίξτε τον πραγματικό ζωντανό πίνακα →','dash.note':'Το πρωτότυπο τρέχει στο core.zeynah.cloud — ανοίγει σε νέα καρτέλα. Πρόσβαση demo μόνο για ανάγνωση.',
+'dash.bereiche':'12 τομείς: Cockpit, Τηλέφωνο, WhatsApp, Αιτήματα, Ακίνητα, Ξεναγήσεις, Ενδιαφερόμενοι, Φυλλάδια, Φάκελοι αγοραστών, Φάκελοι ενοικιαστών, Ιδιοκτήτες, Προμήθειες',
+'vid.h4':'📹 Zeynah για ακίνητα — η ταινία','vid.p':'Δύο μεσίτες. Το ίδιο διαμέρισμα. Το κλεισμένο είναι κλεισμένο — στο λεπτό.','vid.meta':'HD · στη γλώσσα σας',
+'price.h2':'Τιμές που αποδίδουν','price.p':'Μηνιαία καταγγελία στο τέλος του μήνα. Χωρίς ελάχιστη διάρκεια.',
+'roi.h3':'Μία μόνο χαμένη προμήθεια = πάνω από εννέα μήνες Zeynah Pro','roi.p':'12.400 € προμήθεια, χαμένη ένα Σάββατο βράδυ. <span class="roi-highlight">Η Zeynah δέχεται κάθε αίτημα — ακόμη και στις 9 το βράδυ, ακόμη και στα τουρκικά.</span>',
+'permonth':'€/μήνα','popular':'ΤΟ ΔΗΜΟΦΙΛΕΣΤΕΡΟ',
+'p1.note':'Ένα μεσιτικό γραφείο, έως περ. 300 αιτήματα/μήνα',
+'p1.f1':'Υποδοχή κλήσεων & αιτημάτων μέσω τηλεφώνου, WhatsApp & e-mail','p1.f2':'Δομημένη καταγραφή αιτημάτων πυλών (ImmoScout24, Immowelt)','p1.f3':'Επιβεβαιώσεις & υπενθυμίσεις ξεναγήσεων','p1.f4':'Απεριόριστοι υπάλληλοι',
+'p2.note':'Το στάνταρ για ένα ενεργό μεσιτικό γραφείο',
+'p2.f1':'Όλα από το Start','p2.f2':'Αξιολόγηση ενδιαφερομένων: προϋπολογισμός, χρηματοδότηση, χρονοδιάγραμμα','p2.f3':'Προγραμματισμός ξεναγήσεων με προειδοποίηση σύγκρουσης','p2.f4':'Αποστολή φυλλαδίου & λίστα εγγράφων','p2.f5':'Φάκελοι αγοραστών & ενοικιαστών με πρόταση επαφής','p2.f6':'Έξι γλώσσες στη διεπαφή',
+'p3.note':'Πολλαπλές τοποθεσίες ή πώληση έργων',
+'p3.f1':'Όλα από το Pro','p3.f2':'Πώληση έργων: αιτήματα αγοραστών & ημέρες ξενάγησης','p3.f3':'Σύνδεση με μεσιτικό λογισμικό & υπάρχοντα συστήματα','p3.f4':'Σταθερός προσωπικός υπεύθυνος',
+'setup':'<strong>Εφάπαξ κόστος εγκατάστασης: 1.900 – 4.900 €</strong> — ανάλογα με διαδικασίες, συστήματα και τοποθεσίες. Αναλαμβάνουμε τη μεταφορά από Excel, παλαιά συστήματα ή λίστες. <strong style="color:var(--accent-light);">Με σύμβαση 12 μηνών συμψηφίζουμε το ήμισυ με τις μηνιαίες δόσεις.</strong> Όλες οι τιμές καθαρές. Από την έναρξη έως το πρώτο απαντημένο αίτημα: περίπου 10 εργάσιμες ημέρες.',
+'form.h3':'🚀 Ζητήστε πιλοτική θέση','form.p':'Μόνο 3 θέσεις διαθέσιμες. Απαντάμε εντός 24 ωρών.',
+'f.firma':'Όνομα εταιρείας *','f.name':'Το όνομά σας *','f.tel':'Τηλέφωνο *','f.mail':'E-mail *','f.branche':'Κλάδος *','f.woche':'Περίπου αιτήματα ανά εβδομάδα','f.problem':'Ποιο είναι το μεγαλύτερο πρόβλημά σας στην υποδοχή ενδιαφερομένων;',
+'ph.firma':'π.χ. Κατασκευαστική Ελλάς Α.Ε.','ph.name':'Όνομα και επώνυμο','ph.problem':'π.χ. αιτήματα Σαββατοκύριακου από ImmoScout24 που κρυώνουν ως τη Δευτέρα...',
+'sel.waehlen':'Επιλέξτε','opt.sonst':'Άλλο',
+'form.btn':'Αποστολή αιτήματος →','form.note':'🔒 Τα δεδομένα σας επεξεργάζονται σύμφωνα με τον GDPR. Χωρίς spam, χωρίς κοινοποίηση.',
+'faq.h2':'Τι ρωτούν πραγματικά όσοι αποφασίζουν','faq.p':'Όλα όσα θέλουν να ξέρουν οι μεσίτες πριν ξεκινήσουν.',
+'q1':'Μπορεί η Zeynah να συνδεθεί με το μεσιτικό μου λογισμικό;','a1':'Ναι. Η Zeynah μιλά με τα γνωστά συστήματα — από Excel έως onOffice, Flowfact και εξατομικευμένες λύσεις. Στο πακέτο Premium φτιάχνουμε και εξειδικευμένες διεπαφές.',
+'q2':'Τι γίνεται αν πέσει το internet;','a2':'Η Zeynah τρέχει στο cloud με εφεδρική υποδομή. Τα αιτήματα ανακτώνται αυτόματα. Σε έκτακτη ανάγκη μπορείτε πάντα να επιστρέψετε στο τοπικό σας λογισμικό.',
+'q3':'Ποιος εκπαιδεύει την ομάδα μου;','a3':'Το αναλαμβάνουμε πλήρως εμείς. Εκπαίδευση 2 ωρών επιτόπου ή μέσω βίντεο. Τις πρώτες 4 εβδομάδες είμαστε διαθέσιμοι καθημερινά.',
+'q4':'Πώς λειτουργεί το πιλοτικό;','a4':'Στήνουμε τη Zeynah με τα πραγματικά σας ακίνητα, ενδιαφερομένους και διαδικασίες. Δοκιμάζετε με πραγματικά αιτήματα της καθημερινότητάς σας. Στο τέλος αποφασίζετε ήρεμα — χωρίς δράμα.',
+'q5':'Λειτουργεί και με διεθνείς ενδιαφερομένους;','a5':'Ναι. Η Zeynah καταλαβαίνει και απαντά σε πάνω από 20 γλώσσες — οι ενδιαφερόμενοί σας γράφουν και μιλούν όπως συνηθίζουν. Η διεπαφή διατίθεται στα γερμανικά, τουρκικά, αγγλικά, αραβικά, ελληνικά και ρωσικά.',
+'q6':'Και η προστασία δεδομένων;','a6':'Σύμφωνη με τον GDPR, διακομιστές στην ΕΕ, όλα τα δεδομένα κρυπτογραφημένα. Το χτίσαμε από την αρχή — δεν το προσθέσαμε μετά.',
+'q7':'Τι γίνεται όταν η Zeynah δεν μπορεί να απαντήσει;','a7':'Η Zeynah το αναγνωρίζει, κανονίζει επανάκληση ή μεταβιβάζει την κλήση στο προσωπικό σας — αυτόματα και απρόσκοπτα για τον καλούντα.',
+'q8':'Καταλαβαίνει η Zeynah αν ένας ενδιαφερόμενος εννοεί σοβαρά;','a8':'Ναι. Η Zeynah ρωτά προϋπολογισμό, απόδειξη χρηματοδότησης και χρονοδιάγραμμα, σημειώνει τους ζεστούς αγοραστές και καταγράφει τα πάντα καθαρά — και σύμφωνα με το Bestellerprinzip.',
+'kontakt.h2':'Έτοιμοι να μη χάσετε ξανά κανέναν ενδιαφερόμενο;','kontakt.p':'Μιλήστε μαζί μας — μέσω του καναλιού που σας ταιριάζει.','kontakt.btn':'Ζητήστε πιλοτική θέση →',
+'k1.p':'Γράψτε μας απευθείας — απάντηση σε λεπτά','k2.h4':'Τηλέφωνο','k3.h4':'Κλείστε demo','k3.p':'15 λεπτά — ζωντανά, στον κλάδο σας','k4.p':'info@zeynah.cloud — απάντηση εντός 24 ωρών','pitch.btn':'Παρουσίαση (PDF)',
+'footer.l1':'© 2026 Zeynah — Αμβούργο · 20+ γλώσσες · σύμφωνα με GDPR · διαθέσιμοι 24/7',
+'alert':'Ευχαριστούμε για το αίτημά σας! Θα επικοινωνήσουμε εντός 24 ωρών.',
+'imp.h1':'📍 Νομικά στοιχεία','imp.ust':'ΑΦΜ ΦΠΑ: [προστίθεται]','imp.hr':'Εμπορικό Μητρώο: [προστίθεται]','imp.note':'Νομικά δεσμευτική είναι η γερμανική έκδοση.',
+'imp.ds.h':'🔒 Προστασία δεδομένων (GDPR)','imp.ds.p':'Επεξεργασία δεδομένων σύμφωνα με GDPR.<br>Διακομιστές στην ΕΕ (Γερμανία).<br>Όλα τα δεδομένα κρυπτογραφημένα (AES-256).','imp.ds.resp':'Υπεύθυνος:','imp.ds.link':'Πλήρης πολιτική απορρήτου',
+'imp.legal.h':'⚖️ Νομικά','imp.legal.agb':'Όροι χρήσης','imp.legal.ds':'Απόρρητο','imp.legal.widerruf':'Δικαίωμα υπαναχώρησης','imp.legal.avv':'Σύμβαση επεξεργασίας δεδομένων (DPA)','imp.legal.streit':'Επίλυση διαφορών:','imp.legal.eu':'Πλατφόρμα της Ευρωπαϊκής Επιτροπής:',
+'footer.imp':'Νομικά στοιχεία','footer.ds':'Απόρρητο','footer.agb':'Όροι',
+'films.h2':'Περισσότερα βίντεο — σύντομα & αληθινά',
+'films.p':'Τέσσερα κλιπ από την καθημερινότητα του μεσίτη. Δείτε γρήγορα, καταλάβετε αμέσως.',
+'film1.t':'⏰ Προθεσμίες — τι γίνεται όταν κανείς δεν απαντά',
+'film2.t':'🤝 Εμπιστοσύνη — η πρώτη εντύπωση μετράει',
+'film3.t':'☀️ Ένα πρωινό με τη Zeynah',
+'film4.t':'🔍 Wanted — ο χαμένος ενδιαφερόμενος',
+'opt.makler':'Μεσιτικό γραφείο',
+'opt.verwaltung':'Διαχείριση ακινήτων',
+'opt.projekt':'Ανάπτυξη έργων & κατασκευαστές',},
+ru: {
+'cookie.text':'🍪 Мы используем только технически необходимые файлы cookie.','cookie.btn':'Понятно',
+'gate.btn':'🎙️ Начать голосовую консультацию','gate.note':'При этом загружается сервис ElevenLabs (США).','gate.privacy':'Конфиденциальность',
+'nav.problem':'Проблема','nav.stimme':'Голос','nav.ablauf':'Как это работает','nav.live':'Живая панель','nav.preise':'Цены','nav.faq':'Вопросы','nav.kontakt':'Контакт','nav.cta':'Запросить пилот',
+'hero.badge':'🚀 Пилот для недвижимости — 3 места доступно','hero.h1':'Клиенты звонят. <span class="accent">Всегда</span> кто-то отвечает. Даже в воскресенье в 21:00.','hero.lead':'Zeynah принимает заявки покупателей и арендаторов, уточняет бюджет и финансирование, отправляет экспозе и бронирует показы — круглосуточно. На 20+ языках.','hero.cta1':'Запросить пилот →','hero.cta2':'Открыть живую панель',
+'sos.h2':'Что Zeynah находит за одни выходные','sos.p':'Эти четыре предупреждения — из реальных агентств. Не выдумка.',
+'sos1.h4':'SOS · Упущенный покупатель','sos1.big':'12.400 €','sos1.p':'Заявка на покупку в субботу в 21:15. Без ответа. В понедельник он подписал с конкурентом.',
+'sos2.h4':'SOS · Остывшие заявки с порталов','sos2.big':'9 из 10','sos2.p':'Клиенты уходят, если ответа нет в течение часа.',
+'sos3.h4':'SOS · Пинг-понг с показами','sos3.big':'27 уточнений','sos3.p':'ради одного показа: время, документы, подтверждение финансирования.',
+'sos4.h4':'SOS · Простой','sos4.big':'43 дня','sos4.p':'квартира пустует, потому что заявки на аренду остались без ответа.',
+'steps.h2':'Три шага. Ни одного решения без человека.','steps.p':'Zeynah принимает, квалифицирует, бронирует — но никогда не решает сама.',
+'step1.h3':'Приём','step1.p':'Звонок, WhatsApp, заявка с портала, e-mail. Zeynah принимает всё — и превращает в аккуратное дело.',
+'step2.h3':'Квалификация','step2.p':'Бюджет, финансирование, собственные средства, сроки: Zeynah спрашивает — как ваш лучший сотрудник.',
+'step3.h3':'Бронирование','step3.p':'Показ попадает в календарь — и становится окончательным только после подтверждения человеком.',
+'order.h2':'Как проходит заявка покупателя','order.p':'Клиент пишет как всегда — коротко, с дивана, без формы.',
+'o1.label':'Клиент пишет','o1.bubble':'Здравствуйте, трёхкомнатная квартира на Hafenstraße ещё свободна? Сколько стоит?',
+'o2.label':'Zeynah замечает','o2.bubble':'Объект Hafenstraße 12 — свободен, 349.000 €.<br><strong>Экспозе отправлено. Уточнены средства и сроки.<br>Показ в субботу 10:30 свободен.</strong> Бронировать?',
+'o3.label':'Утверждение','o3.bubble':'Да',
+'o4.label':'Ловец конфликтов','o4.bubble':'<strong>Внимание: на субботу 10:30 уже назначен показ этого объекта.</strong><br>Предложить групповой показ или 11:30?',
+'voice.h2':'Послушайте сами — голос Zeynah','voice.p':'Звучит как человек. Работает как команда. Реальные разговоры, не студийные записи.',
+'v1.label':'🏢 Продажа','v1.h3':'Заявка на покупку по телефону','v1.p':'Клиент спрашивает о цене и состоянии — Zeynah уточняет бюджет и финансирование и бронирует показ.',
+'v2.label':'🔑 Аренда','v2.h3':'Заявка на аренду в выходные','v2.p':'Zeynah уточняет состав семьи, доход и дату переезда — и отправляет список документов.',
+'dash.h2':'Живая система — кокпит вашего агентства','dash.p':'От заявки до показа, от экспозе до комиссии. Всё на одном экране.',
+'dash.sub':'Демо-вид','dash.upd':'● Обновляется каждые 30 секунд',
+'d1.h5':'Новые заявки сегодня','d1.big':'23','d1.p':'9 покупка · 14 аренда',
+'d2.h5':'Показы','d2.big':'16','d2.p':'на этой неделе · все подтверждены',
+'d3.h5':'Горячие покупатели','d3.big':'7','d3.p':'финансирование подтверждено · звонить сейчас',
+'d4.h5':'Кому позвонить','d4.big':'4','d4.p':'нужны перезвоны · с тезисами для разговора',
+'d5.h5':'Открытые экспозе','d5.big':'12','d5.p':'отправлены, ответа нет · рекомендуется напомнить',
+'d6.h5':'Ожидаемая комиссия','d6.big':'84.500 €','d6.p':'из 5 квалифицированных сделок',
+'d7.h5':'Простой','d7.big':'2 объекта','d7.p':'в среднем 18 дней · заявки на аренду идут',
+'d8.h5':'Доля ответов на порталах','d8.big':'98 %','d8.p':'ImmoScout24 и Immowelt · последние 7 дней',
+'dash.cta':'Открыть настоящую живую панель →','dash.note':'Оригинал работает на core.zeynah.cloud — открывается в новой вкладке. Демо-доступ только для чтения.',
+'dash.bereiche':'12 областей: Кокпит, Телефон, WhatsApp, Заявки, Объекты, Показы, Клиенты, Экспозе, Покупатели, Арендаторы, Собственники, Комиссии',
+'vid.h4':'📹 Zeynah для недвижимости — фильм','vid.p':'Два риелтора. Одна квартира. Забронировано — значит забронировано, до минуты.','vid.meta':'HD · на вашем языке',
+'price.h2':'Цены, которые окупаются','price.p':'Ежемесячная отмена в конце месяца. Без минимального срока.',
+'roi.h3':'Одна упущенная комиссия = больше девяти месяцев Zeynah Pro','roi.p':'12.400 € комиссии, потерянные в субботу вечером. <span class="roi-highlight">Zeynah принимает каждую заявку — даже в 21:00, даже на турецком.</span>',
+'permonth':'€/мес','popular':'САМЫЙ ПОПУЛЯРНЫЙ',
+'p1.note':'Одно агентство, до ~300 заявок в месяц',
+'p1.f1':'Приём звонков и заявок по телефону, WhatsApp и e-mail','p1.f2':'Структурированный приём заявок с порталов (ImmoScout24, Immowelt)','p1.f3':'Подтверждения показов и напоминания','p1.f4':'Неограниченное число сотрудников',
+'p2.note':'Стандарт для работающего агентства',
+'p2.f1':'Всё из Start','p2.f2':'Квалификация клиентов: бюджет, финансирование, сроки','p2.f3':'Планирование показов с предупреждением о конфликтах','p2.f4':'Отправка экспозе и чек-лист документов','p2.f5':'Досье покупателей и арендаторов с рекомендацией напомнить','p2.f6':'Шесть языков в интерфейсе',
+'p3.note':'Несколько офисов или продажа проектов',
+'p3.f1':'Всё из Pro','p3.f2':'Продажа проектов: заявки покупателей и дни показов','p3.f3':'Интеграция с риелторским ПО и текущими системами','p3.f4':'Постоянный личный контакт',
+'setup':'<strong>Разовая плата за настройку: 1 900 – 4 900 €</strong> — в зависимости от процессов, систем и филиалов. Миграцию из Excel, старых систем или списков берём на себя. <strong style="color:var(--accent-light);">При договоре на 12 месяцев зачитываем половину в ежемесячные платежи.</strong> Все цены нетто. От запуска до первой отвеченной заявки: около 10 рабочих дней.',
+'form.h3':'🚀 Запросить пилотное место','form.p':'Свободны только 3 места. Отвечаем в течение 24 часов.',
+'f.firma':'Название компании *','f.name':'Ваше имя *','f.tel':'Телефон *','f.mail':'E-mail *','f.branche':'Отрасль *','f.woche':'Примерно заявок в неделю','f.problem':'Какая у вас главная проблема с приёмом клиентов?',
+'ph.firma':'напр. ООО «СтройМонтаж»','ph.name':'Имя и фамилия','ph.problem':'напр. заявки с ImmoScout24 за выходные, остывшие к понедельнику...',
+'sel.waehlen':'Пожалуйста, выберите','opt.sonst':'Другое',
+'form.btn':'Отправить заявку →','form.note':'🔒 Ваши данные обрабатываются по GDPR. Без спама, без передачи третьим лицам.',
+'faq.h2':'Что действительно спрашивают те, кто решает','faq.p':'Всё, что риелторы хотят знать перед стартом.',
+'q1':'Может ли Zeynah подключиться к моему риелторскому ПО?','a1':'Да. Zeynah работает с распространёнными системами — от Excel до onOffice, Flowfact и индивидуальных решений. В тарифе Premium мы также строим индивидуальные интерфейсы.',
+'q2':'Что будет, если пропадёт интернет?','a2':'Zeynah работает в облаке с резервной инфраструктурой. Заявки наверстываются автоматически. В экстренном случае вы всегда можете вернуться к локальному ПО.',
+'q3':'Кто обучит мою команду?','a3':'Мы берём это полностью на себя. Двухчасовое обучение на объекте или по видео. Первые 4 недели мы на связи ежедневно.',
+'q4':'Как проходит пилот?','a4':'Мы настраиваем Zeynah с вашими реальными объектами, клиентами и процессами. Вы тестируете на настоящих заявках из вашей практики. В конце спокойно решаете — без драмы.',
+'q5':'Работает ли это с иностранными клиентами?','a5':'Да. Zeynah понимает и отвечает более чем на 20 языках — ваши клиенты пишут и говорят как привыкли. Интерфейс доступен на немецком, турецком, английском, арабском, греческом и русском.',
+'q6':'А как насчёт защиты данных?','a6':'Соответствие GDPR, серверы в ЕС, все данные зашифрованы. Мы заложили это с самого начала — не добавили потом.',
+'q7':'Что происходит, если Zeynah не может ответить на вопрос?','a7':'Zeynah это распознаёт, назначает перезвон или передаёт разговор вашему сотруднику — автоматически и незаметно для звонящего.',
+'q8':'Понимает ли Zeynah, серьёзен ли клиент?','a8':'Да. Zeynah уточняет бюджет, подтверждение финансирования и сроки, отмечает горячих покупателей и аккуратно всё документирует — в том числе по принципу Bestellerprinzip.',
+'kontakt.h2':'Готовы больше не упускать ни одного клиента?','kontakt.p':'Поговорите с нами — через удобный вам канал.','kontakt.btn':'Запросить пилотное место →',
+'k1.p':'Напишите нам напрямую — ответ в течение минут','k2.h4':'Телефон','k3.h4':'Забронировать демо','k3.p':'15 минут — вживую, в вашей отрасли','k4.p':'info@zeynah.cloud — ответ в течение 24 часов','pitch.btn':'Презентация (PDF)',
+'footer.l1':'© 2026 Zeynah — Гамбург · 20+ языков · соответствие GDPR · доступны 24/7',
+'alert':'Спасибо за вашу заявку! Мы свяжемся с вами в течение 24 часов.',
+'imp.h1':'📍 Правовая информация','imp.ust':'ИНН НДС: [добавить]','imp.hr':'Торговый реестр: [добавить]','imp.note':'Юридически обязательна только немецкая версия.',
+'imp.ds.h':'🔒 Защита данных (GDPR)','imp.ds.p':'Обработка данных по GDPR.<br>Серверы в ЕС (Германия).<br>Все данные зашифрованы (AES-256).','imp.ds.resp':'Ответственный:','imp.ds.link':'Полная политика конфиденциальности',
+'imp.legal.h':'⚖️ Правовое','imp.legal.agb':'Условия использования','imp.legal.ds':'Конфиденциальность','imp.legal.widerruf':'Право отзыва','imp.legal.avv':'Соглашение об обработке данных (DPA)','imp.legal.streit':'Урегулирование споров:','imp.legal.eu':'Платформа Европейской комиссии:',
+'footer.imp':'Правовая информация','footer.ds':'Конфиденциальность','footer.agb':'Условия',
+'films.h2':'Ещё фильмы — коротко и честно',
+'films.p':'Четыре ролика из будней агентства. Посмотреть быстро — понять сразу.',
+'film1.t':'⏰ Сроки — что бывает, когда никто не отвечает',
+'film2.t':'🤝 Доверие — важно первое впечатление',
+'film3.t':'☀️ Одно утро с Zeynah',
+'film4.t':'🔍 Wanted — упущенный клиент',
+'opt.makler':'Агентство недвижимости',
+'opt.verwaltung':'Управление недвижимостью',
+'opt.projekt':'Девелопмент и застройщики',}
+};
+
+/* Deutsche Originale beim Laden sichern */
+document.querySelectorAll('[data-i18n]').forEach(el => { el.dataset.de = el.innerHTML; });
+document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.dataset.dePh = el.placeholder; });
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  localStorage.setItem('zlang', lang);
+  const dict = I18N[lang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (lang === 'de') el.innerHTML = el.dataset.de;
+    else if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.dataset.i18nPh;
+    if (lang === 'de') el.placeholder = el.dataset.dePh;
+    else if (dict[k] !== undefined) el.placeholder = dict[k];
+  });
+  /* Makler-Film in der passenden Sprache laden */
+  const v = document.getElementById('bereicheVideo');
+  if (v) {
+    const vl = ['de','en','tr','ar','el','ru'].includes(lang) ? lang : 'de';
+    const src = 'https://zeynah.cloud/videos/kurz-makler-' + vl + '.mp4';
+    if (!v.currentSrc.includes('kurz-makler-' + vl)) { v.src = src; v.load(); }
+  }
+  /* Voice-Demos in der passenden Sprache laden (DE/EN/TR/AR) */
+  const v1 = document.getElementById('voice1');
+  const v2 = document.getElementById('voice2');
+  if (v1 && v2) {
+    const s1 = 'assets/audio/hoerbeispiel-immo-' + lang + '.mp3';
+    const s2 = 'assets/audio/voice-demo-makler-' + lang + '.mp3';
+    if (!v1.currentSrc.endsWith(s1)) { v1.src = s1; }
+    if (!v2.currentSrc.endsWith(s2)) { v2.src = s2; }
+  }
+  /* Pitch-Deck in der passenden Sprache verlinken */
+  const pl = document.getElementById('pitchLink');
+  if (pl) {
+    const pll = ['de','en','tr','ar','el','ru'].includes(lang) ? lang : 'de';
+    pl.href = 'assets/pitch/zeynah-pitch-immo-' + pll + '.pdf';
+  }
+}
+/* Deutsche Originaltexte sichern, damit der Rückwechsel nach DE funktioniert */
+document.querySelectorAll('[data-i18n]').forEach(el => { el.dataset.de = el.innerHTML; });
+document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.dataset.dePh = el.placeholder; });
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+if (localStorage.getItem('zlang') && localStorage.getItem('zlang') !== 'de') setLang(localStorage.getItem('zlang'));
+
+/* FAQ Akkordeon */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+/* Sanftes Scrollen */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+function handleSubmit(e) {
+  e.preventDefault();
+  const lang = document.documentElement.lang;
+  alert((I18N[lang] && I18N[lang]['alert']) || 'Danke für Ihre Anfrage! Wir melden uns innerhalb von 24 Stunden.');
+}
+function toggleNav() { const links = document.getElementById('navLinks'); links.style.display = links.style.display === 'flex' ? 'none' : 'flex'; links.style.position = 'absolute'; links.style.top = '60px'; links.style.left = '0'; links.style.right = '0'; links.style.flexDirection = 'column'; links.style.background = 'rgba(28,31,36,0.97)'; links.style.padding = '20px'; links.style.gap = '16px'; }
+
+/* ElevenLabs Sprachberatung — Zwei-Klick-Lösung (DSGVO) */
+function startVoice() {
+  document.getElementById('voiceGate').style.display = 'none';
+  var w = document.createElement('elevenlabs-convai');
+  w.setAttribute('agent-id', 'agent_3201khxdc18wfrabzjjpqtes42jz');
+  w.setAttribute('override-language', document.documentElement.lang || 'de');
+  w.setAttribute('action-text', 'Zeynah fragen');
+  w.setAttribute('start-call-text', 'Gespräch starten');
+  w.setAttribute('end-call-text', 'Gespräch beenden');
+  document.body.appendChild(w);
+  var s = document.createElement('script');
+  s.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+  s.async = true;
+  document.body.appendChild(s);
+}
+
+function hideCookie() { document.getElementById('cookieBanner').style.display = 'none'; localStorage.setItem('cookiesAccepted', 'true'); }
+if (localStorage.getItem('cookiesAccepted')) document.getElementById('cookieBanner').style.display = 'none';
+</script>
+
+</body>
+</html>
