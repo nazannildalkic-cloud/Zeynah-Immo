@@ -798,7 +798,7 @@ elevenlabs-convai { z-index: 60; }
   <div class="container">
     <div class="video-box">
       <video controls id="bereicheVideo">
-        <source src="assets/videos/immo-film-de.mp4" type="video/mp4">
+        <source src="assets/videos/immo-film-de.mp4?v=cine2" type="video/mp4">
       </video>
       <div class="video-info">
         <div>
@@ -1493,7 +1493,7 @@ function setLang(lang) {
   const v = document.getElementById('bereicheVideo');
   if (v) {
     const vl = ['de','en','tr','ar','el','ru'].includes(lang) ? lang : 'de';
-    const src = 'assets/videos/immo-film-' + vl + '.mp4';
+    const src = 'assets/videos/immo-film-' + vl + '.mp4?v=cine2';
     if (!v.currentSrc.includes('immo-film-' + vl)) { v.src = src; v.load(); }
   }
   /* Voice-Demos in der passenden Sprache laden (DE/EN/TR/AR) */
