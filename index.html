@@ -724,13 +724,13 @@ elevenlabs-convai { z-index: 60; }
         <div class="voice-label" data-i18n="v1.label">🏢 Verkauf</div>
         <h3 data-i18n="v1.h3">Kaufanfrage am Telefon</h3>
         <p data-i18n="v1.p">Der Interessent fragt nach Preis und Zustand — Zeynah qualifiziert Budget und Finanzierung und bucht die Besichtigung.</p>
-        <audio controls preload="none" id="voice1" src="assets/audio/hoerbeispiel-immo-de.mp3"></audio>
+        <audio controls preload="none" id="voice1" src="assets/audio/hoerbeispiel-immo-de.mp3?v=2"></audio>
       </div>
       <div class="voice-card glass">
         <div class="voice-label" data-i18n="v2.label">🔑 Vermietung</div>
         <h3 data-i18n="v2.h3">Mietanfrage am Wochenende</h3>
         <p data-i18n="v2.p">Zeynah erfragt Haushaltsgröße, Einkommen und Einzugstermin — und schickt die Unterlagen-Checkliste.</p>
-        <audio controls preload="none" id="voice2" src="assets/audio/voice-demo-makler-de.mp3"></audio>
+        <audio controls preload="none" id="voice2" src="assets/audio/voice-demo-makler-de.mp3?v=2"></audio>
       </div>
     </div>
   </div>
@@ -873,7 +873,7 @@ elevenlabs-convai { z-index: 60; }
       </div>
       <div class="price-card glass">
         <h3>Premium</h3>
-        <div class="price-amount">1.990 <span data-i18n="permonth">€/Monat</span></div>
+        <div class="price-amount"><span data-i18n="p3.ab">ab </span>1.990 <span data-i18n="permonth">€/Monat</span></div>
         <div class="price-note" data-i18n="p3.note">Mehrere Standorte oder Projektverkauf</div>
         <ul class="price-features">
           <li data-i18n="p3.f1">Alles aus Pro</li>
@@ -985,7 +985,7 @@ elevenlabs-convai { z-index: 60; }
     <div class="faq-item glass">
       <div class="faq-item-inner">
         <div class="faq-q" data-i18n="q6">Was ist mit Datenschutz?</div>
-        <div class="faq-a"><p data-i18n="a6">DSGVO-konform, Server in der EU, alle Daten verschlüsselt. Wir haben das von Anfang an eingebaut — nicht nachträglich.</p></div>
+        <div class="faq-a"><p data-i18n="a6">DSGVO-konform, Server in der EU, alle Daten verschlüsselt. Sie bekommen von uns eine Auftragsverarbeitungs-Vereinbarung (AVV) — und Anrufer werden transparent informiert. Datenschutz war von Anfang an eingebaut, nicht nachträglich.</p></div>
       </div>
     </div>
     <div class="faq-item glass">
@@ -998,6 +998,24 @@ elevenlabs-convai { z-index: 60; }
       <div class="faq-item-inner">
         <div class="faq-q" data-i18n="q8">Erkennt Zeynah, ob ein Interessent es ernst meint?</div>
         <div class="faq-a"><p data-i18n="a8">Ja. Zeynah erfragt Budget, Finanzierungsbestätigung und Zeitrahmen, markiert heiße Käufer und dokumentiert alles sauber — auch im Sinne des Bestellerprinzips.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q9">Was passiert, wenn hundert Interessenten gleichzeitig anrufen?</div>
+        <div class="faq-a"><p data-i18n="a9">Zeynah führt beliebig viele Gespräche parallel — auch am Abend eines Exposé-Launches. Niemand hört je ein Besetztzeichen.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q10">Sagt Zeynah den Anrufern, dass sie eine KI ist?</div>
+        <div class="faq-a"><p data-i18n="a10">Ja. Zeynah stellt sich als digitale Assistentin Ihres Büros vor — ehrlich und freundlich. Das schafft Vertrauen und ist rechtlich sauber.</p></div>
+      </div>
+    </div>
+    <div class="faq-item glass">
+      <div class="faq-item-inner">
+        <div class="faq-q" data-i18n="q11">Haben Sie Referenzen?</div>
+        <div class="faq-a"><p data-i18n="a11">Wir starten bewusst mit nur drei Pilotbetrieben — statt Hochglanzversprechen bekommen Sie den Beweis an Ihren eigenen Objekten: Erst testen Sie Zeynah im echten Alltag, dann entscheiden Sie. Kein Vertrag ohne erfolgreichen Pilot.</p></div>
       </div>
     </div>
   </div>
@@ -1149,7 +1167,7 @@ tr: {
 'q3':'Ekibimi kim eğitecek?','a3':'Tamamen biz üstleniriz. Yerinde veya video ile 2 saatlik eğitim. İlk 4 hafta her gün ulaşılabiliriz.',
 'q4':'Pilot nasıl işliyor?','a4':'Zeynah’ı gerçek objeleriniz, ilgilenenleriniz ve süreçlerinizle kurarız. Günlük işinizden gerçek taleplerle test edersiniz. Sonda sakin karar verirsiniz — drama yok.',
 'q5':'Uluslararası ilgilenenlerle de çalışır mı?','a5':'Evet. Zeynah 20’den fazla dilde anlar ve yanıtlar — ilgilenenleriniz alıştıkları gibi yazar ve konuşur. Arayüz Almanca, Türkçe, İngilizce, Arapça, Yunanca ve Rusça mevcut.',
-'q6':'Peki veri koruma?','a6':'GDPR uyumlu, AB’de sunucular, tüm veriler şifreli. Bunu baştan inşa ettik — sonradan eklemedik.',
+'q6':'Peki veri koruma?','a6':'GDPR uyumlu, sunucular AB’de, tüm veriler şifreli. Bizden bir veri işleme sözleşmesi (AVV) alırsınız — ve arayanlar şeffaf şekilde bilgilendirilir. Veri koruma baştan tasarlandı, sonradan eklenmedi.',
 'q7':'Zeynah bir soruyu yanıtlayamazsa ne olur?','a7':'Zeynah bunu fark eder, geri arama ayarlar veya görüşmeyi çalışanınıza aktarır — otomatik ve arayan için kesintisiz.',
 'q8':'Zeynah bir ilgilenenin ciddi olup olmadığını anlar mı?','a8':'Evet. Zeynah bütçe, finansman onayı ve zaman çerçevesini sorar, sıcak alıcıları işaretler ve her şeyi düzenli kaydeder — Bestellerprinzip’e uygun.',
 'kontakt.h2':'Bir daha hiçbir ilgilenen kaçırmamaya hazır mısınız?','kontakt.p':'Bizimle konuşun — size uyan kanaldan.','kontakt.btn':'Pilot yeri talep et →',
@@ -1168,7 +1186,14 @@ tr: {
 'film4.t':'🔍 Wanted — kaçan ilgilenen',
 'opt.makler':'Emlak ofisi',
 'opt.verwaltung':'Mülk yönetimi',
-'opt.projekt':'Proje geliştirme & müteahhit',},
+'opt.projekt':'Proje geliştirme & müteahhit',
+'p3.ab':'başlangıç: ',
+'q9':'Yüz kişi aynı anda ararsa ne olur?',
+'a9':'Zeynah sınırsız sayıda görüşmeyi aynı anda yürütür — ilanınızın yayınlandığı akşam bile. Kimse meşgul sinyali duymaz.',
+'q10':'Zeynah arayanlara yapay zekâ olduğunu söylüyor mu?',
+'a10':'Evet. Zeynah kendini ofisinizin dijital asistanı olarak tanıtır — dürüst ve nazik. Bu güven verir ve hukuken temizdir.',
+'q11':'Referanslarınız var mı?',
+'a11':'Bilinçli olarak yalnızca üç pilot ofisle başlıyoruz — parlak vaatler yerine kanıtı kendi portföyünüzde alırsınız: Önce Zeynah’ı gerçek iş hayatında test edersiniz, sonra karar verirsiniz. Başarılı pilot olmadan sözleşme yok.',},
 en: {
 'cookie.text':'🍪 We only use technically necessary cookies.','cookie.btn':'Got it',
 'gate.btn':'🎙️ Start voice assistant','gate.note':'This loads a service from ElevenLabs (USA).','gate.privacy':'Privacy',
@@ -1225,7 +1250,7 @@ en: {
 'q3':'Who trains my people?','a3':'We handle that completely. A 2-hour training on site or via video. For the first 4 weeks we are reachable daily.',
 'q4':'How does the pilot work?','a4':'We set Zeynah up with your real properties, prospects and processes. You test with real inquiries from your daily work. In the end you decide calmly — no drama.',
 'q5':'Does it work with international prospects?','a5':'Yes. Zeynah understands and replies in over 20 languages — your prospects write and speak as they are used to. The interface comes in German, Turkish, English, Arabic, Greek and Russian.',
-'q6':'What about data protection?','a6':'GDPR-compliant, servers in the EU, all data encrypted. We built that in from the start — not retrofitted.',
+'q6':'What about data protection?','a6':'GDPR-compliant, servers in the EU, all data encrypted. You receive a data processing agreement (DPA) from us — and callers are informed transparently. Privacy was built in from the start, not added later.',
 'q7':'What happens when Zeynah cannot answer a question?','a7':'Zeynah recognizes that, arranges a callback or hands the call to your human staff — automatically and seamlessly for the caller.',
 'q8':'Does Zeynah know whether a prospect is serious?','a8':'Yes. Zeynah asks budget, proof of financing and timeline, flags hot buyers and documents everything cleanly — also in line with the Bestellerprinzip.',
 'kontakt.h2':'Ready to never miss a prospect again?','kontakt.p':'Talk to us — via the channel that suits you.','kontakt.btn':'Request pilot spot →',
@@ -1244,7 +1269,14 @@ en: {
 'film4.t':'🔍 Wanted — the missed prospect',
 'opt.makler':'Real estate agency',
 'opt.verwaltung':'Property management',
-'opt.projekt':'Development & project sales',},
+'opt.projekt':'Development & project sales',
+'p3.ab':'from ',
+'q9':'What if a hundred prospects call at once?',
+'a9':'Zeynah handles any number of calls in parallel — even on the evening your listing goes live. Nobody ever hears a busy signal.',
+'q10':'Does Zeynah tell callers she is an AI?',
+'a10':'Yes. Zeynah introduces herself as your office’s digital assistant — honest and friendly. That builds trust and is legally clean.',
+'q11':'Do you have references?',
+'a11':'We deliberately launch with only three pilot offices — instead of glossy promises you get proof on your own properties: test Zeynah in real daily work first, then decide. No contract without a successful pilot.',},
 ar: {
 'cookie.text':'🍪 نستخدم فقط ملفات تعريف الارتباط الضرورية تقنياً.','cookie.btn':'فهمت',
 'gate.btn':'🎙️ ابدأ الاستشارة الصوتية','gate.note':'سيتم تحميل خدمة من ElevenLabs (الولايات المتحدة).','gate.privacy':'الخصوصية',
@@ -1301,7 +1333,7 @@ ar: {
 'q3':'من يدرب فريقي؟','a3':'نتولى ذلك بالكامل. تدريب ساعتين في الموقع أو عبر الفيديو. في الأسابيع الأربعة الأولى نحن متاحون يومياً.',
 'q4':'كيف تسير النسخة التجريبية؟','a4':'نُعدّ Zeynah بعقاراتك ومهتميك وعملياتك الحقيقية. تختبرها بطلبات حقيقية من يومك. وفي النهاية تقرر بهدوء — بدون دراما.',
 'q5':'هل يعمل مع المهتمين الدوليين؟','a5':'نعم. تفهم Zeynah وترد بأكثر من 20 لغة — مهتموك يكتبون ويتحدثون كما اعتادوا. الواجهة متاحة بالألمانية والتركية والإنجليزية والعربية واليونانية والروسية.',
-'q6':'وماذا عن حماية البيانات؟','a6':'متوافقة مع GDPR، خوادم في الاتحاد الأوروبي، جميع البيانات مشفرة. بنينا ذلك منذ البداية — لم نضفه لاحقاً.',
+'q6':'وماذا عن حماية البيانات؟','a6':'متوافقة مع GDPR، الخوادم في الاتحاد الأوروبي، جميع البيانات مشفرة. تحصلون منا على اتفاقية معالجة بيانات — ويتم إعلام المتصلين بشفافية. الخصوصية مدمجة منذ البداية.',
 'q7':'ماذا يحدث إذا لم تستطع زينة الإجابة عن سؤال؟','a7':'زينة تدرك ذلك، وترتب معاودة اتصال أو تحول المكالمة إلى موظفيك — تلقائياً وبسلاسة للمتصل.',
 'q8':'هل تدرك Zeynah ما إذا كان المهتم جاداً؟','a8':'نعم. تسأل Zeynah عن الميزانية وإثبات التمويل والإطار الزمني، وتعلّم المشترين الجادين وتوثق كل شيء بوضوح — بما يتوافق مع مبدأ Bestellerprinzip.',
 'kontakt.h2':'مستعد لألا يفوتك أي مهتم بعد الآن؟','kontakt.p':'تحدث معنا — عبر القناة التي تناسبك.','kontakt.btn':'اطلب المكان التجريبي →',
@@ -1320,7 +1352,14 @@ ar: {
 'film4.t':'🔍 Wanted — المهتم الضائع',
 'opt.makler':'مكتب عقاري',
 'opt.verwaltung':'إدارة عقارات',
-'opt.projekt':'تطوير مشاريع ومقاولون',},
+'opt.projekt':'تطوير مشاريع ومقاولون',
+'p3.ab':'ابتداءً من ',
+'q9':'ماذا لو اتصل مئة مهتم في آن واحد؟',
+'a9':'Zeynah تدير أي عدد من المكالمات بالتوازي — حتى في مساء نشر إعلانكم. لن يسمع أحد إشارة مشغول أبداً.',
+'q10':'هل تخبر Zeynah المتصلين أنها ذكاء اصطناعي؟',
+'a10':'نعم. تقدّم Zeynah نفسها كمساعدة رقمية لمكتبكم — بصدق ولطف. هذا يبني الثقة وهو سليم قانونياً.',
+'q11':'هل لديكم مراجع؟',
+'a11':'نبدأ عمداً مع ثلاثة مكاتب تجريبية فقط — بدلاً من الوعود اللامعة تحصلون على الدليل على عقاراتكم: جرّبوا Zeynah في العمل اليومي الحقيقي أولاً ثم قرروا. لا عقد دون تجربة ناجحة.',},
 el: {
 'cookie.text':'🍪 Χρησιμοποιούμε μόνο τεχνικά απαραίτητα cookies.','cookie.btn':'Το κατάλαβα',
 'gate.btn':'🎙️ Ξεκινήστε τη φωνητική συμβουλή','gate.note':'Φορτώνεται υπηρεσία της ElevenLabs (ΗΠΑ).','gate.privacy':'Απόρρητο',
@@ -1377,7 +1416,7 @@ el: {
 'q3':'Ποιος εκπαιδεύει την ομάδα μου;','a3':'Το αναλαμβάνουμε πλήρως εμείς. Εκπαίδευση 2 ωρών επιτόπου ή μέσω βίντεο. Τις πρώτες 4 εβδομάδες είμαστε διαθέσιμοι καθημερινά.',
 'q4':'Πώς λειτουργεί το πιλοτικό;','a4':'Στήνουμε τη Zeynah με τα πραγματικά σας ακίνητα, ενδιαφερομένους και διαδικασίες. Δοκιμάζετε με πραγματικά αιτήματα της καθημερινότητάς σας. Στο τέλος αποφασίζετε ήρεμα — χωρίς δράμα.',
 'q5':'Λειτουργεί και με διεθνείς ενδιαφερομένους;','a5':'Ναι. Η Zeynah καταλαβαίνει και απαντά σε πάνω από 20 γλώσσες — οι ενδιαφερόμενοί σας γράφουν και μιλούν όπως συνηθίζουν. Η διεπαφή διατίθεται στα γερμανικά, τουρκικά, αγγλικά, αραβικά, ελληνικά και ρωσικά.',
-'q6':'Και η προστασία δεδομένων;','a6':'Σύμφωνη με τον GDPR, διακομιστές στην ΕΕ, όλα τα δεδομένα κρυπτογραφημένα. Το χτίσαμε από την αρχή — δεν το προσθέσαμε μετά.',
+'q6':'Και η προστασία δεδομένων;','a6':'Συμμόρφωση με GDPR, διακομιστές στην ΕΕ, όλα τα δεδομένα κρυπτογραφημένα. Λαμβάνετε συμφωνία επεξεργασίας δεδομένων — και οι καλούντες ενημερώνονται διαφανώς.',
 'q7':'Τι γίνεται όταν η Zeynah δεν μπορεί να απαντήσει;','a7':'Η Zeynah το αναγνωρίζει, κανονίζει επανάκληση ή μεταβιβάζει την κλήση στο προσωπικό σας — αυτόματα και απρόσκοπτα για τον καλούντα.',
 'q8':'Καταλαβαίνει η Zeynah αν ένας ενδιαφερόμενος εννοεί σοβαρά;','a8':'Ναι. Η Zeynah ρωτά προϋπολογισμό, απόδειξη χρηματοδότησης και χρονοδιάγραμμα, σημειώνει τους ζεστούς αγοραστές και καταγράφει τα πάντα καθαρά — και σύμφωνα με το Bestellerprinzip.',
 'kontakt.h2':'Έτοιμοι να μη χάσετε ξανά κανέναν ενδιαφερόμενο;','kontakt.p':'Μιλήστε μαζί μας — μέσω του καναλιού που σας ταιριάζει.','kontakt.btn':'Ζητήστε πιλοτική θέση →',
@@ -1396,7 +1435,14 @@ el: {
 'film4.t':'🔍 Wanted — ο χαμένος ενδιαφερόμενος',
 'opt.makler':'Μεσιτικό γραφείο',
 'opt.verwaltung':'Διαχείριση ακινήτων',
-'opt.projekt':'Ανάπτυξη έργων & κατασκευαστές',},
+'opt.projekt':'Ανάπτυξη έργων & κατασκευαστές',
+'p3.ab':'από ',
+'q9':'Τι γίνεται αν καλέσουν εκατό ενδιαφερόμενοι ταυτόχρονα;',
+'a9':'Η Zeynah διεξάγει απεριόριστες κλήσεις παράλληλα — ακόμη και το βράδυ που δημοσιεύεται η αγγελία σας. Κανείς δεν ακούει ποτέ σήμα κατειλημμένου.',
+'q10':'Λέει η Zeynah στους καλούντες ότι είναι AI;',
+'a10':'Ναι. Η Zeynah παρουσιάζεται ως η ψηφιακή βοηθός του γραφείου σας — ειλικρινά και φιλικά.',
+'q11':'Έχετε συστάσεις;',
+'a11':'Ξεκινάμε σκόπιμα με μόνο τρία πιλοτικά γραφεία — αντί για λαμπερές υποσχέσεις παίρνετε την απόδειξη στα δικά σας ακίνητα: πρώτα δοκιμάζετε, μετά αποφασίζετε. Κανένα συμβόλαιο χωρίς επιτυχημένο πιλοτικό.',},
 ru: {
 'cookie.text':'🍪 Мы используем только технически необходимые файлы cookie.','cookie.btn':'Понятно',
 'gate.btn':'🎙️ Начать голосовую консультацию','gate.note':'При этом загружается сервис ElevenLabs (США).','gate.privacy':'Конфиденциальность',
@@ -1453,7 +1499,7 @@ ru: {
 'q3':'Кто обучит мою команду?','a3':'Мы берём это полностью на себя. Двухчасовое обучение на объекте или по видео. Первые 4 недели мы на связи ежедневно.',
 'q4':'Как проходит пилот?','a4':'Мы настраиваем Zeynah с вашими реальными объектами, клиентами и процессами. Вы тестируете на настоящих заявках из вашей практики. В конце спокойно решаете — без драмы.',
 'q5':'Работает ли это с иностранными клиентами?','a5':'Да. Zeynah понимает и отвечает более чем на 20 языках — ваши клиенты пишут и говорят как привыкли. Интерфейс доступен на немецком, турецком, английском, арабском, греческом и русском.',
-'q6':'А как насчёт защиты данных?','a6':'Соответствие GDPR, серверы в ЕС, все данные зашифрованы. Мы заложили это с самого начала — не добавили потом.',
+'q6':'А как насчёт защиты данных?','a6':'Соответствие GDPR, серверы в ЕС, все данные зашифрованы. Вы получаете договор на обработку данных — звонящие информируются прозрачно.',
 'q7':'Что происходит, если Zeynah не может ответить на вопрос?','a7':'Zeynah это распознаёт, назначает перезвон или передаёт разговор вашему сотруднику — автоматически и незаметно для звонящего.',
 'q8':'Понимает ли Zeynah, серьёзен ли клиент?','a8':'Да. Zeynah уточняет бюджет, подтверждение финансирования и сроки, отмечает горячих покупателей и аккуратно всё документирует — в том числе по принципу Bestellerprinzip.',
 'kontakt.h2':'Готовы больше не упускать ни одного клиента?','kontakt.p':'Поговорите с нами — через удобный вам канал.','kontakt.btn':'Запросить пилотное место →',
@@ -1472,7 +1518,14 @@ ru: {
 'film4.t':'🔍 Wanted — упущенный клиент',
 'opt.makler':'Агентство недвижимости',
 'opt.verwaltung':'Управление недвижимостью',
-'opt.projekt':'Девелопмент и застройщики',}
+'opt.projekt':'Девелопмент и застройщики',
+'p3.ab':'от ',
+'q9':'Что, если позвонят сто клиентов одновременно?',
+'a9':'Zeynah ведёт любое количество разговоров параллельно — даже вечером, когда вышло ваше объявление. Никто не услышит «занято».',
+'q10':'Говорит ли Zeynah звонящим, что она ИИ?',
+'a10':'Да. Zeynah представляется цифровым ассистентом вашего офиса — честно и дружелюбно.',
+'q11':'Есть ли у вас рекомендации?',
+'a11':'Мы сознательно стартуем только с тремя пилотными офисами — вместо глянцевых обещаний вы получаете доказательство на своих объектах: сначала тест, потом решение. Никакого договора без успешного пилота.',}
 };
 
 /* Deutsche Originale beim Laden sichern */
@@ -1506,8 +1559,8 @@ function setLang(lang) {
   const v1 = document.getElementById('voice1');
   const v2 = document.getElementById('voice2');
   if (v1 && v2) {
-    const s1 = 'assets/audio/hoerbeispiel-immo-' + lang + '.mp3';
-    const s2 = 'assets/audio/voice-demo-makler-' + lang + '.mp3';
+    const s1 = 'assets/audio/hoerbeispiel-immo-' + lang + '.mp3?v=2';
+    const s2 = 'assets/audio/voice-demo-makler-' + lang + '.mp3?v=2';
     if (!v1.currentSrc.endsWith(s1)) { v1.src = s1; }
     if (!v2.currentSrc.endsWith(s2)) { v2.src = s2; }
   }
