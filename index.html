@@ -798,7 +798,7 @@ elevenlabs-convai { z-index: 60; }
   <div class="container">
     <div class="video-box">
       <video controls id="bereicheVideo">
-        <source src="https://zeynah.cloud/videos/kurz-makler-de.mp4" type="video/mp4">
+        <source src="assets/videos/immo-film-de.mp4" type="video/mp4">
       </video>
       <div class="video-info">
         <div>
@@ -940,7 +940,7 @@ elevenlabs-convai { z-index: 60; }
 </section>
 
 <!-- FAQ (dunkel) -->
-<section class="section" id="faq">
+<section class="section section-light" id="faq">
   <div class="container">
     <div class="section-head">
       <h2 data-i18n="faq.h2">Was Entscheider wirklich fragen</h2>
@@ -1493,8 +1493,8 @@ function setLang(lang) {
   const v = document.getElementById('bereicheVideo');
   if (v) {
     const vl = ['de','en','tr','ar','el','ru'].includes(lang) ? lang : 'de';
-    const src = 'https://zeynah.cloud/videos/kurz-makler-' + vl + '.mp4';
-    if (!v.currentSrc.includes('kurz-makler-' + vl)) { v.src = src; v.load(); }
+    const src = 'assets/videos/immo-film-' + vl + '.mp4';
+    if (!v.currentSrc.includes('immo-film-' + vl)) { v.src = src; v.load(); }
   }
   /* Voice-Demos in der passenden Sprache laden (DE/EN/TR/AR) */
   const v1 = document.getElementById('voice1');
