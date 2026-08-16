@@ -462,6 +462,8 @@ html[dir="rtl"] .roi-box { flex-direction: row-reverse; }
   transition: background .15s;
 }
 .voice-gate-btn:hover { background: var(--accent-light); }
+@keyframes gatePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); box-shadow: 0 0 0 14px rgba(0,113,227,0.22), var(--shadow-hover); } }
+.gate-pulse { animation: gatePulse 0.9s ease-in-out 4; }
 .voice-gate p { font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
 .voice-gate p a { color: var(--accent-light); text-decoration: none; }
 .voice-gate p a:hover { text-decoration: underline; }
@@ -533,7 +535,7 @@ elevenlabs-convai { z-index: 60; }
 
 <!-- ELEVENLABS GATE — erst nach Zustimmung wird geladen (DSGVO) -->
 <div id="voiceGate" class="voice-gate glass">
-  <button class="voice-gate-btn" onclick="startVoice()" data-i18n="gate.btn">🎙️ Sprachberatung starten</button>
+  <button class="voice-gate-btn" onclick="startVoice()" data-i18n="gate.btn">🎙️ Jetzt live mit Zeynah sprechen</button>
   <p><span data-i18n="gate.note">Dabei wird ein Dienst von ElevenLabs (USA) geladen.</span> <a href="#impressum" data-i18n="gate.privacy">Datenschutz</a></p>
 </div>
 
@@ -575,6 +577,7 @@ elevenlabs-convai { z-index: 60; }
         <div class="hero-ctas">
           <a href="#pilot-form" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Pilot anfragen →</a>
           <a href="#live" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Live-Dashboard öffnen</a>
+          <button class="btn btn-secondary btn-lg" onclick="pulseGate()" data-i18n="hero.cta3">🎙️ Live testen — mit Zeynah sprechen</button>
         </div>
       </div>
       <div class="orb-wrap">
@@ -1166,7 +1169,7 @@ elevenlabs-convai { z-index: 60; }
 const I18N = {
 tr: {
 'cookie.text':'🍪 Yalnızca teknik olarak gerekli çerezleri kullanıyoruz.','cookie.btn':'Anladım',
-'gate.btn':'🎙️ Sesli danışmanlığı başlat','gate.note':'Bu sırada ElevenLabs (ABD) hizmeti yüklenir.','gate.privacy':'Gizlilik',
+'gate.btn':'🎙️ Zeynah ile şimdi canlı konuşun','hero.cta3':'🎙️ Canlı test — Zeynah ile konuşun','gate.note':'Bu sırada ElevenLabs (ABD) hizmeti yüklenir.','gate.privacy':'Gizlilik',
 'nav.problem':'Sorun','nav.stimme':'Ses','nav.ablauf':'Süreç','nav.live':'Canlı Panel','nav.preise':'Fiyatlar','nav.faq':'SSS','nav.kontakt':'İletişim','nav.cta':'Pilot talep et',
 'hero.badge':'🚀 Gayrimenkul pilot programı — 3 yer mevcut','hero.h1':'İlgilenenler arıyor. <span class="accent">Her zaman</span> biri açıyor. Pazar 21.00’de bile.','hero.lead':'Zeynah alıcı ve kiracı taleplerini karşılar, bütçe ve finansmanı sorgular, exposé gönderir ve görüşme randevularını planlar — gece gündüz. 20+ dilde.','hero.cta1':'Pilot talep et →','hero.cta2':'Canlı paneli aç',
 'sos.h2':'Zeynah’ın tek bir hafta sonunda buldukları','sos.p':'Bu dört uyarı gerçek emlak ofislerinden. Uydurma değil.',
@@ -1249,7 +1252,7 @@ tr: {
 'a11':'Bilinçli olarak yalnızca üç pilot ofisle başlıyoruz — parlak vaatler yerine kanıtı kendi portföyünüzde alırsınız: Önce Zeynah’ı gerçek iş hayatında test edersiniz, sonra karar verirsiniz. Başarılı pilot olmadan sözleşme yok.',},
 en: {
 'cookie.text':'🍪 We only use technically necessary cookies.','cookie.btn':'Got it',
-'gate.btn':'🎙️ Start voice assistant','gate.note':'This loads a service from ElevenLabs (USA).','gate.privacy':'Privacy',
+'gate.btn':'🎙️ Talk to Zeynah live now','hero.cta3':'🎙️ Live test — talk to Zeynah','gate.note':'This loads a service from ElevenLabs (USA).','gate.privacy':'Privacy',
 'nav.problem':'The Problem','nav.stimme':'Voice','nav.ablauf':'How it works','nav.live':'Live Dashboard','nav.preise':'Pricing','nav.faq':'FAQ','nav.kontakt':'Contact','nav.cta':'Request pilot',
 'hero.badge':'🚀 Real estate pilot program — 3 spots available','hero.h1':'Buyers are calling. <span class="accent">Someone</span> always answers. Even Sunday at 9 p.m.','hero.lead':'Zeynah takes buyer and tenant inquiries, qualifies budget and financing, sends out exposés and books viewings — around the clock. In 20+ languages.','hero.cta1':'Request pilot →','hero.cta2':'Open live dashboard',
 'sos.h2':'What Zeynah finds in a single weekend','sos.p':'These four warnings come from real agencies. Not made up.',
@@ -1332,7 +1335,7 @@ en: {
 'a11':'We deliberately launch with only three pilot offices — instead of glossy promises you get proof on your own properties: test Zeynah in real daily work first, then decide. No contract without a successful pilot.',},
 ar: {
 'cookie.text':'🍪 نستخدم فقط ملفات تعريف الارتباط الضرورية تقنياً.','cookie.btn':'فهمت',
-'gate.btn':'🎙️ ابدأ الاستشارة الصوتية','gate.note':'سيتم تحميل خدمة من ElevenLabs (الولايات المتحدة).','gate.privacy':'الخصوصية',
+'gate.btn':'🎙️ تحدثوا مع Zeynah مباشرة الآن','hero.cta3':'🎙️ جرّبوا مباشرة — تحدثوا مع Zeynah','gate.note':'سيتم تحميل خدمة من ElevenLabs (الولايات المتحدة).','gate.privacy':'الخصوصية',
 'nav.problem':'المشكلة','nav.stimme':'الصوت','nav.ablauf':'كيف تعمل','nav.live':'لوحة المتابعة','nav.preise':'الأسعار','nav.faq':'الأسئلة','nav.kontakt':'اتصل بنا','nav.cta':'اطلب النسخة التجريبية',
 'hero.badge':'🚀 برنامج تجريبي للعقارات — 3 أماكن متاحة','hero.h1':'المهتمون يتصلون. <span class="accent">دائماً</span> هناك من يرد. حتى الأحد في التاسعة مساءً.','hero.lead':'تستقبل Zeynah طلبات المشترين والمستأجرين، وتتحقق من الميزانية والتمويل، وترسل ملفات العقار وتحجز مواعيد المعاينة — على مدار الساعة. بأكثر من 20 لغة.','hero.cta1':'اطلب النسخة التجريبية →','hero.cta2':'افتح لوحة المتابعة',
 'sos.h2':'ما تكتشفه Zeynah في عطلة نهاية أسبوع واحدة','sos.p':'هذه التحذيرات الأربعة من مكاتب عقارية حقيقية. ليست من الخيال.',
@@ -1415,7 +1418,7 @@ ar: {
 'a11':'نبدأ عمداً مع ثلاثة مكاتب تجريبية فقط — بدلاً من الوعود اللامعة تحصلون على الدليل على عقاراتكم: جرّبوا Zeynah في العمل اليومي الحقيقي أولاً ثم قرروا. لا عقد دون تجربة ناجحة.',},
 el: {
 'cookie.text':'🍪 Χρησιμοποιούμε μόνο τεχνικά απαραίτητα cookies.','cookie.btn':'Το κατάλαβα',
-'gate.btn':'🎙️ Ξεκινήστε τη φωνητική συμβουλή','gate.note':'Φορτώνεται υπηρεσία της ElevenLabs (ΗΠΑ).','gate.privacy':'Απόρρητο',
+'gate.btn':'🎙️ Μιλήστε τώρα ζωντανά με τη Zeynah','hero.cta3':'🎙️ Ζωντανή δοκιμή — μιλήστε με τη Zeynah','gate.note':'Φορτώνεται υπηρεσία της ElevenLabs (ΗΠΑ).','gate.privacy':'Απόρρητο',
 'nav.problem':'Το πρόβλημα','nav.stimme':'Φωνή','nav.ablauf':'Πώς λειτουργεί','nav.live':'Ζωντανός πίνακας','nav.preise':'Τιμές','nav.faq':'FAQ','nav.kontakt':'Επικοινωνία','nav.cta':'Ζητήστε πιλοτικό',
 'hero.badge':'🚀 Πιλοτικό πρόγραμμα για ακίνητα — 3 διαθέσιμες θέσεις','hero.h1':'Οι ενδιαφερόμενοι καλούν. <span class="accent">Πάντα</span> κάποιος απαντά. Ακόμη και Κυριακή στις 9 το βράδυ.','hero.lead':'Η Zeynah δέχεται αιτήματα αγοραστών και ενοικιαστών, ελέγχει προϋπολογισμό και χρηματοδότηση, στέλνει φυλλάδια και κλείνει ραντεβού ξενάγησης — όλο το 24ωρο. Σε 20+ γλώσσες.','hero.cta1':'Ζητήστε πιλοτικό →','hero.cta2':'Ανοίξτε τον ζωντανό πίνακα',
 'sos.h2':'Τι βρίσκει η Zeynah σε ένα μόνο Σαββατοκύριακο','sos.p':'Αυτές οι τέσσερις προειδοποιήσεις προέρχονται από πραγματικά μεσιτικά γραφεία. Δεν είναι φαντασία.',
@@ -1498,7 +1501,7 @@ el: {
 'a11':'Ξεκινάμε σκόπιμα με μόνο τρία πιλοτικά γραφεία — αντί για λαμπερές υποσχέσεις παίρνετε την απόδειξη στα δικά σας ακίνητα: πρώτα δοκιμάζετε, μετά αποφασίζετε. Κανένα συμβόλαιο χωρίς επιτυχημένο πιλοτικό.',},
 ru: {
 'cookie.text':'🍪 Мы используем только технически необходимые файлы cookie.','cookie.btn':'Понятно',
-'gate.btn':'🎙️ Начать голосовую консультацию','gate.note':'При этом загружается сервис ElevenLabs (США).','gate.privacy':'Конфиденциальность',
+'gate.btn':'🎙️ Поговорите с Zeynah прямо сейчас','hero.cta3':'🎙️ Живой тест — поговорите с Zeynah','gate.note':'При этом загружается сервис ElevenLabs (США).','gate.privacy':'Конфиденциальность',
 'nav.problem':'Проблема','nav.stimme':'Голос','nav.ablauf':'Как это работает','nav.live':'Живая панель','nav.preise':'Цены','nav.faq':'Вопросы','nav.kontakt':'Контакт','nav.cta':'Запросить пилот',
 'hero.badge':'🚀 Пилот для недвижимости — 3 места доступно','hero.h1':'Клиенты звонят. <span class="accent">Всегда</span> кто-то отвечает. Даже в воскресенье в 21:00.','hero.lead':'Zeynah принимает заявки покупателей и арендаторов, уточняет бюджет и финансирование, отправляет экспозе и бронирует показы — круглосуточно. На 20+ языках.','hero.cta1':'Запросить пилот →','hero.cta2':'Открыть живую панель',
 'sos.h2':'Что Zeynah находит за одни выходные','sos.p':'Эти четыре предупреждения — из реальных агентств. Не выдумка.',
@@ -1676,6 +1679,8 @@ function startVoice() {
   s.async = true;
   document.body.appendChild(s);
 }
+
+function pulseGate() { const g = document.getElementById('voiceGate'); if (!g) return; g.classList.remove('gate-pulse'); void g.offsetWidth; g.classList.add('gate-pulse'); setTimeout(() => g.classList.remove('gate-pulse'), 3800); }
 
 function hideCookie() { document.getElementById('cookieBanner').style.display = 'none'; localStorage.setItem('cookiesAccepted', 'true'); }
 if (localStorage.getItem('cookiesAccepted')) document.getElementById('cookieBanner').style.display = 'none';
